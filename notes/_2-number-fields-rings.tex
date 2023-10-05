@@ -1,0 +1,70 @@
+\section{Number Fields and Number Rings}
+
+\begin{definition}[Number field]
+	A \em{number field} is a field $K \subset \C$ with $\deg_\Q K$ finite.
+\end{definition}
+
+\begin{theorem}
+	Every number field has the form $\Q[\alpha]$ for some algebraic number $\alpha \in \C$.Furthermore, if $d$ is the degree of the minimal polynomial of $\alpha$, then the set $\{1, \alpha, \alpha^2, \ldots, \alpha^{d-1} \}$ is a basis for $\Q[\alpha]$.
+\end{theorem}
+
+\begin{proof}
+	Given in Appendix B of Marcus.
+\end{proof}
+
+\begin{definition}[Cyclomatic field]
+	Let $\omega_p = e^{2 \pi i / m}$ for some $m \in \N$. Then, the field $\Q[\omega_p]$ is the \em{$m$th cyclomatic field}.
+\end{definition}
+
+\begin{theorem}
+	The degree of the $m$the cyclomatic field is $\phi(m)$.
+\end{theorem}
+
+\begin{definition}[Quadratic field]
+	A \em{quadratic field} is a field of the form $\Q[\sqrt{m}]$ for any non-square $m \in \Z$. If $m < 0$, we call $Q[\sqrt{m}]$ an imaginary quadratic field. If $m > 0$, we call $Q[\sqrt{m}]$ a real quadratic field.
+\end{definition}
+
+\begin{theorem}
+	All quadratic fields have degree $2$ over $\Q$ with basis $\{ 1, \sqrt{m} \}$.
+\end{theorem}
+
+\begin{theorem}
+	Quadratic fields for squarefree $m$ are all distinct.
+\end{theorem}
+
+\begin{example}
+	$\Q[\sqrt{-3}] = Q[\omega_6]$
+\end{example}
+
+\begin{definition}[Algebraic integer]
+	A number $\alpha \in \C$ is an \em{algebraic integer} if it's the root of a monic polynomial $f \in \Z[x]$.
+	We denote the sum of all algebraic integers as $\mathcal A$.
+\end{definition}
+
+\begin{theorem}
+	Let $\alpha$ be an algebraic integer with a monic vanishing polynomial $f \in \Z[x]$ of minimal degree. Then $f$ is irredicible over $\Q$.
+\end{theorem}
+
+\begin{theorem}
+	The followign are equivalent for $a \in \C$
+	\begin{enumerate}
+		\item $\alpha$ is an algebraic integer,
+		\item The (addative) group $\Z[\alpha]$ is finitely generated,
+		\item $\alpha$ is a member of some subring $R$ of $\C$ where $(R, +)$ is finitely generated,
+		\item $\alpha A \subset A$ for some finitely-generated additive subgroup $A \subset \C$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{corrolary}
+	If $\alpha, \beta \in \A$, then $\alpha + \beta, \alpha \beta \in \A$.
+\end{corrolary}
+
+\begin{definition}[Number ring]
+	The \em{number ring} of a number field $K$ is the ring $R = \mathbb A \cup K$.
+\end{definition}
+
+\begin{example}
+	The corresponding number ring for the cyclomatic field $\Q[\omega]$ is $\A \cup \Q[\omega] = \Z[\omega]$.
+\end{example}
+
+
