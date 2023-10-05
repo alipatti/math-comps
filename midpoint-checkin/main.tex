@@ -1,0 +1,59 @@
+\documentclass{ali-hw}
+
+\title{Comps Midpoint Checkin}
+\author{Alistair Pattison}
+
+\usepackage{ali-macros, ali-algebra, ali-theorems}
+
+\begin{document}
+
+% Approximately midway through independent comps students will go through a check-in designed to keep them on track to successfully complete their project. For this check-in students will turn in the following materials on the Moodle site for independent comps.
+
+% A 1-2 page preliminary outline of their comps paper, including details about what they have accomplished so far and what they would like to accomplish by the end of the project. 
+% The first 4-5 preliminary slides for their comps presentation. These should include a title slide, a slide providing an outline of the final presentation, and 2-3 slides that provide motivation for and/or an introduction to the topic. 
+% Note that both items submitted are preliminary products: the final paper and presentation can be different from the materials students submit for the check-in.
+
+\maketitle
+
+\section{The Big Picture}
+
+The goal of this project is to develop the necessary background to prove the following two theorems in algebraic number theory using Daniel Marcus's \textit{Number Fields}:
+
+\begin{theorem}[Theorem 35: finiteness of the class group]
+	Let $K$ be a number field with associated number ring $R = \mathbb A \cap K$. Then, there exists some positive $\lambda \in \R$ such that every nonzero ideal $I$ of $R$ contains a nonzero $\alpha$ such that
+	\begin{equation}
+		\left| N_\Q^K(\alpha) \right| \leq \lambda || I ||.
+	\end{equation}
+\end{theorem}
+
+\begin{theorem}[Theorem 38: Dirichlet's unit theorem]
+	Let $U = R*$ be the units of the number ring $R = \mathcal A \cup K$ and take $r$ and $2s$ to be the number of real and non-real embeddings respectively of $K$ in $\C$. Then $U$ is the direct product $V \times W$ where $V$ is an free abelian group of rank $r + s - 1$ and $W = \mathcal Z_n$ is a finite cyclic group consisting of the roots of 1 in $K$.
+\end{theorem}
+
+These two theorems don't appear until 100 pages into \textit{Number Fields} so I can't hope to simply regurgitate the textbook up to that point. It would be far too long. Much of my work so far has been determining a coherent thread that my paper can follow that leads to these two theorems in $\sim$ 15 pages without sweeping too much under the rug and starting from only an intro algebra and number theory class (e.g. 342 and 282). The rest of this document will go over my plans for that thread.
+
+\section{The Paper}
+
+My current plan is to break the paper up into the following sections:
+
+\begin{enumerate}
+	\item \textit{Introduction} -- give an overview of algebraic number theory as a field and give enough definitions to be able to loosely state the two theorems that the paper will build to. \textit{Number Fields} doesn't include any history, but I think it would be interesting to do some research on my own to write about the history of the field and the two theorems I'm proving if I have time.
+	\item \textit{Number fields and number rings} -- rigorously introduce number fields and number rings with lots of examples (algebraic numbers, algebraic integers, cyclomatic fields, quadratic fields, embeddings, etc.).
+	\item \textit{More background} -- develop more background necessary to prove the theorems I want. This is still a sizable hole in my plan--I have to read chapter 3 more closely before I can fill this in. This will include at least a discussion of Dedekind domains and prime splitting.
+	\item \textit{Finiteness of the Class Group} -- rigorously state and prove the finiteness of the class group.
+	\item \textit{The Unit Theorem} -- rigorously state and prove Dirichlet's unit theorem.
+\end{enumerate}
+
+So far, I've given an intial pass through the portion of book that I intend to cover, working backwards from the two big theorems to loosely indentify the main points that I want to develop in my paper. I've then gone back and closely read the first two chapters (out of four to read) and come up with a rough plan for how to present them in the paper. I'm working on the third chapter.
+
+I had a decent ammount of review to do getting back up to speed with ring theory and some Galois theory, so I think that the remainder of the reading (the rest of chapter 3 and chapter 5) will go a lot faster. I hope to be done with the reading and "understanding" phase by the end of next week so I can focus on writing full-time for weeks six, seven, and eight. I've been \TeX{}ing up notes and a rough outline of the things I want to hit as I've read, and I hope to be able to recycle a lot of this when I go to write the paper.
+
+\section{The Talk}
+
+I've been to a lot of math talks where the speaker tries to say too much in too little time and I end up leaving having understood very little of the material. This is as a math major senior who's taken quite a few math classes. My goal is to not give one of those talks.
+
+Carleton doesn't have any classes in algebraic number theory, so I think that this is a cool opportunity to give an intro to that field for people who've taken a class in algebra and number theory. My goal is to be able to develop enough theory (with lots of eamples and figures) to formally state the two theorems that I prove in the paper, but I don't plan to talk at all about the proofs of the theorems themselves because (a) they seem quite technical and (b) in only 25 minutes, I'd rather focus on presenting less material more clearly.
+
+I don't know yet what I'll be able to squeeze into 25 minutes, so this plan could evolve quite a bit as the term progresses.
+
+\end{document}
