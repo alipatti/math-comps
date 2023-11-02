@@ -1,0 +1,197 @@
+\section{Number Fields and Number Rings}
+
+\note{But all fields aren't created equal.}
+
+\begin{frame}
+	\frametitle{Number Fields}
+
+	\begin{definition}[Number Field]
+		A \emph{number field} $K \subset \C$ is a finite extension of $\Q$.
+	\end{definition}
+
+	\pause
+
+	\begin{theorem}
+		Any number field can be written in the form
+		\begin{equation*}
+			K
+			= \Q[\alpha]
+			= \spn_\Q \{ 1, \alpha, \alpha^2, \ldots, \alpha^{n-1} \}
+		\end{equation*}
+		where $n$ is the degree of the minimal polynomial of $\alpha$.
+	\end{theorem}
+
+	\pause
+
+	\textbf{Examples}
+
+	\begin{itemize}[<+->]
+		\item $\Q[i \sqrt 5] = \{ a + i b \sqrt 5 : a, b \in \Q \}$
+		\item $\Q[\omega]$, $\omega = e^{2 \pi i / p}$ (cyclotomic fields)
+		\item $\Q[\sqrt m]$, $m$ squarefree (quadratic fields)
+	\end{itemize}
+
+	\pause
+
+	\textbf{Non-examples}
+
+	\begin{itemize}
+		\item $\Q[\pi]$ because $\pi$ is transcendental
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Number Rings}
+
+	\pause
+
+	\note{We need an analogue to the integers in the complex plane}
+
+	\begin{definition}[Algebraic Integer]
+		An \emph{algebraic integer} is a complex number $\alpha$ that is the root of some monic polynomial $f \in \Z[x]$.
+
+		\pause \medskip
+
+		We use $\mathbb A$ to denote the set of all algebraic integers.
+	\end{definition}
+
+	\begin{itemize}
+		\item<3-> Any integer is an algebraic integer
+		\item<4-> $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2$
+		\item<5-> $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$
+		\item<6-> $\mathbb A$ is a subring of $\C$
+			\note{show that $\alpha - \beta, \alpha \beta \in \mathbb A$}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Number Rings}
+
+	\begin{definition}[Number Ring]
+		The \emph{number ring} of a number field $K = \Q(\alpha)$ is the set
+		\begin{equation*}
+			\mathcal O_K = \mathbb A \cap K.
+		\end{equation*}
+	\end{definition}
+
+	\bigskip \pause
+
+	\begin{itemize}[<+->]
+		\item $\mathcal O_{\Q} = \mathbb A \cap \Q = \Z$ % TODO: why is this true?
+		      \note{This was not immediately obvious to me. true because leading coef of minimal poly isn't 1}
+		\item $\mathcal O_{\Q[i]} = \Z[i]$
+		\item $\mathcal O_{\Q[\zeta]} = \Z[\zeta]$ for primitive roots $\zeta$
+		      \note{But number rings aren't always this nice, or even one-dimensional.}
+		\item $\mathcal O_{\Q[\sqrt 5]}$ = \Z[1, \frac12 + \frac12 \sqrt 5]$
+	\end{itemize}
+
+	\note{It turns out that these things have some nice properties. So nice in fact that mathemeticians have done what they love most and come up with another definition.}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Dedekind Domains}
+
+	\begin{theorem}
+		Number rings are Dedekind domains.
+	\end{theorem}
+
+	\begin{definition}[Dedekind domain]
+		A \emph{Dedekind domain} is an integrally closed domain $R$ such that
+		\begin{enumerate}
+			\item every ideal is finitely generated and
+			      \note{this is the same as Noetherian}
+			\item every nonzero prime ideal is maximal.
+			      \note{this is the same as krull dimension 1}
+		\end{enumerate}
+	\end{definition}
+
+	\note{This is nice, but the real reason that we care about this is the following: Even though }
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Dedekind Domains}
+	\framesubtitle{Factoring ideals}
+
+	\begin{theorem}
+		Every ideal of a Dedekind domain $R$ uniquely factors into prime ideals.
+	\end{theorem}
+
+	\bigskip
+
+	\begin{itemize}
+		\item<2-> Allows replacing unique factorization of elements with unique factorization of ideals.
+		\item<3-> In $R = \Z[i \sqrt 5]$,
+			\begin{align*}
+				6   & = {\color<5>{red}{2}}
+				\cdot \color<6>{red}{3}                                               \\
+				    & = {\color<7>{red}{(1 + i \sqrt{5})}}
+				{\color<8>{red}{(1 - i \sqrt{5})}}                                    \\[1em]
+				\onslide<4->{
+				(6) & = {\color<5,7,8>{red}{{(2, 1 + i \sqrt5)}}}^{\color<5>{red}{2}}
+				\, {\color<6,7>{red}{(3, 1 + i \sqrt5)}}
+				\, {\color<6,8>{red}{(3, 1 - i \sqrt5)}}
+				}
+			\end{align*}
+	\end{itemize}
+
+	\note{In this way, the unique factorization of 6, the ideal, totally describes the failure of unique factorization of 6, the number}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Dedekind Domains}
+	\framesubtitle{In the class hierarchy}
+
+	\begin{theorem}
+		A UFD is a PID iff it's a Dedekind domain.
+	\end{theorem}
+
+	\bigskip \pause
+
+	\note{Enables an alternate path from ICD to PID}
+
+	% TODO: highlight left/right path as bullets come up on the right
+
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\begin{center}
+				\begin{tikzpicture}
+					\graph[
+					layered layout, sibling distance=6em, level distance=4em,
+					edges = {
+							shorten >=2pt,
+							shorten <=2pt
+						},
+					]{
+					"Integrally Closed Domains"
+					-> {UFDs, "Dedekind Domains"}
+					-> PIDs;
+					};
+				\end{tikzpicture}
+			\end{center}
+		\end{column}
+
+		\pause
+
+		\note{Say you're an ICD and you want to be PID. You can either be a UFD or a DD, but not both (otherwise you become a PID)}
+
+		\note{You have two options as an integrally closed domain with upward aspirations}
+
+		\begin{column}{.5\textwidth}
+			\begin{itemize}[<+->]
+				% TODO: show that unique factorization of ideals fails in UFD?
+
+				% https://math.stackexchange.com/questions/1669093/example-of-a-ufd-that-is-not-dedekind
+				\item \textbf{DD, not UFD} \\
+				      $\Z[i \sqrt5]$
+
+				\item \textbf{UFD, not DD} \\
+				      $\R[x_1, x_2, \ldots]$, $\Q[x, y]$
+				      \bigskip
+			\end{itemize}
+		\end{column}
+	\end{columns}
+
+	\note{Okay, so we've seen that Dedekind domains have something to do with unique factorization, and this next section will make that connection a little bit more concrete.}
+\end{frame}

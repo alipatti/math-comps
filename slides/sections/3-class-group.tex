@@ -1,0 +1,59 @@
+\section{The Ideal Class Group}
+
+\begin{frame}
+	\frametitle{The Ideal Class Group}
+
+	\begin{definition}[Ideal Class Group]
+		Let $K = \Q[\alpha]$ be a number field. The \textit{class group} of $K$ is the set of ideals of $\mathcal O_K$, modulo the equivilence relation
+		\begin{equation*}
+			I \sim J \text{ iff } \alpha I = \beta J \text{ for some nonzero } \alpha, \beta \in R.
+		\end{equation*}
+	\end{definition}
+
+	\note{To illustrate what this is saying, we can go back to our favorite number field and number ring, $\Z[i \sqrt 5]$.}
+
+	\medskip
+
+	\begin{itemize}
+
+		\item<2-> Back to $K = \Q[i \sqrt 5]$ and $\mathcal O_K = \Z[i \sqrt 5]$
+			\begin{align*}
+				 & (2) \sim (3)                                  & {\tiny \color{gray} 2 (3) = (6) = 3 (2)} \\
+				 & \onslide<3->{(2) \not \sim (2, 1 + i \sqrt5)}
+			\end{align*}
+		\item<4-> That's it.
+		\item<5-> The class group of $\Q[i \sqrt 5]$ is $\Z_2$.
+			\note{We saw an inkling of this on the previous slide when we took any two non-principal ideals and multiplied them together, we always got something that was principal.}
+			\note{What was really happening is that we were observing that $1 + 1 = 0 \mod 2$.}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The Class Number}
+
+	\begin{definition}[Class Number]
+		The class number of a number field $K = \Q[\alpha]$ is the size of its ideal class group.
+	\end{definition}
+
+	\note{lots of other ways this can be defined}
+
+	\pause \medskip
+
+	\begin{itemize}
+		\item $\Q[i \sqrt 5]$ has class number $2$
+		\item $K$ has class number 1 iff $\mathcal O_K$ is a UFD
+		\item Measures "how far away" $O_K$ is from achieving unique factorization
+		      \note{By this metric, our friend $\Z[i \sqrt 5]$ has gotten very, very close.}
+	\end{itemize}
+
+	\pause
+
+	\note{Final things, proved in paper}
+
+	\begin{theorem}
+		Class numbers are always finite.
+		\note{Proof sketch: show that every ideal class contains an ideal of size $\leq \lambda$, of which there are only finitely many. So there must be finitely many classes.}
+	\end{theorem}
+
+	\note{In some ways, this is sort of hopeful--we're never infinitely far from our goals.}
+\end{frame}

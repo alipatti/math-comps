@@ -1,0 +1,359 @@
+\section{MATH 342 in 3:42}
+
+\begin{frame}
+	\begin{center}
+		% TODO: make this on the previous slide
+
+		% TODO: finish this https://www.simontang.dev/apps/spotify-screenshot-generator/
+		\includegraphics[height=.7\textheight]{images/math-342-alistairs-version.jpg}
+	\end{center}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Ring Hierarchy}
+
+	\note{Before I can tell you what a number field is, we're going to do a crash course in algebra.}
+
+	\note{Joke about not doing too well because I'm the TA for 342 next term and I don't want to put myself out of a job.}
+
+	\begin{center}
+		\usebeamercolor{frametitle}
+		\begin{tikzpicture}[
+				start chain = going right,
+				node distance = 1.5em,
+				every join/.style = {->,
+						shorten > = 2pt,
+						shorten < = 2pt},
+				every node/.style = {
+						draw,
+						on chain, join,
+						rounded corners = 2pt,
+						align = center,
+						scale = .7,
+						inner sep = 4pt},
+				highlight/.style = {
+						font = \bf,
+						fill = bg,
+					},
+			]
+			\node[highlight] {Rings};
+			\node {Integral \\ Domains};
+			\node {Integrally \\ Closed \\ Domains};
+			\node {Unique \\ Factorization \\ Domains};
+			\node {Principal \\ Ideal \\ Domains};
+			\node {Fields};
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{overprint}
+
+		\onslide<1-6>
+
+		\begin{definition}[Commutative Ring]
+			\onslide<2-6>{"Things like the integers"}
+
+			\begin{itemize}
+				\item<3-6> Addition/subtraction: $a + b, a - b \in R$
+				\item<4-6> Multiplication: $ab = ba \in R$
+				\item<5-6> Distributive property: $a (b + c) = ab + bc$
+				\item<6> \emph{\color{red} Not} division: $a / b \not \in R$
+			\end{itemize}
+		\end{definition}
+
+		\onslide<7->
+		\begin{definition}[Ideal]
+			An (additive) subgroup, $I$, such that $ra \in I$ for all $r \in R$, $a \in I$.
+			\note{We say that $I$ "absorbs multiplication".}
+		\end{definition}
+
+		\begin{itemize}
+			\item<8-> \textbf{Example}: Even integers ($8 \cdot 7$ is even)
+			\item<9-> \textbf{Non-example}: Odd integers ($7 \cdot 8$ is not odd)
+		\end{itemize}
+
+		\medskip
+
+		\begin{definition}<10->[Prime Ideal]
+			An ideal, $P$, such that $ab \in P$ implies $a \in P$ or $b \in P$.
+		\end{definition}
+
+		\begin{itemize}
+			\item<11-> This is a generalization of Euclid's Lemma
+		\end{itemize}
+
+		% TODO: give some examples and non-examples of prime ideals?
+
+	\end{overprint}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Ring Hierarchy}
+
+	\begin{center}
+		\usebeamercolor{frametitle}
+		\begin{tikzpicture}[
+				start chain = going right,
+				node distance = 1.5em,
+				every join/.style = {->,
+						shorten > = 2pt,
+						shorten < = 2pt},
+				every node/.style = {
+						draw,
+						on chain, join,
+						rounded corners = 2pt,
+						align = center,
+						scale = .7,
+						inner sep = 4pt},
+				highlight/.style = {
+						font = \bf,
+						fill = bg,
+					},
+			]
+			\node {Rings};
+			\node[highlight] {Integral \\ Domains};
+			\node {Integrally \\ Closed \\ Domains};
+			\node {Unique \\ Factorization \\ Domains};
+			\node {Principal \\ Ideal \\ Domains};
+			\node {Fields};
+		\end{tikzpicture}
+	\end{center}
+
+	\pause
+
+	\begin{definition}
+		A commutative ring is an \emph{integral domain} if $ab = 0$ implies $a = 0$ or $b = 0$. (No zero divisors.)
+	\end{definition}
+
+	\bigskip
+
+	\begin{itemize}
+		\item<3-> \textbf{Example}: $\Z$, $\Z[i]$
+			\note{The canonical example is the integers.}
+			\note{Implicitly used the fact that $\Z[i]$ is a UFD in the introduction.}
+		\item<4-> \textbf{Non-example}: in $\Z / 8 \Z$, we have $4 \cdot 2 = 0$
+			\note{This is true for any $\Z / m \Z$ with $m$ composite.}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Ring Hierarchy}
+
+	\begin{center}
+		\usebeamercolor{frametitle}
+		\begin{tikzpicture}[
+				start chain = going right,
+				node distance = 1.5em,
+				every join/.style = {->,
+						shorten > = 2pt,
+						shorten < = 2pt},
+				every node/.style = {
+						draw,
+						on chain, join,
+						rounded corners = 2pt,
+						align = center,
+						scale = .7,
+						inner sep = 4pt},
+				highlight/.style = {
+						font = \bf,
+						fill = bg,
+					},
+			]
+			\node {Rings};
+			\node {Integral \\ Domains};
+			\node[highlight] {Integrally \\ Closed \\ Domains};
+			\node {Unique \\ Factorization \\ Domains};
+			\node {Principal \\ Ideal \\ Domains};
+			\node {Fields};
+		\end{tikzpicture}
+	\end{center}
+
+	\pause
+
+	\note{This isn't typically covered in 342}
+	% https://en.wikipedia.org/wiki/Integrally_closed_domain 
+
+	\begin{definition}[Integrally Closed Domain]
+		A ring $R$ is \textit{integrally closed} if for all $\alpha / \beta \in \Frac R$ that are integral over $R$, then $\beta \mid \alpha$, i.e., $\alpha / \beta \in R$.
+
+		\note{We say that the integral closure of $\Frac R$ is $R$.}
+	\end{definition}
+
+	\begin{itemize}
+		\item<3-> $\Frac \Z = \Q$; $\Frac \C[x]$ is the field of rational functions, $\C(x)$
+		\item<4-> If $f(p / q) = 0$ with monic $f \in \Z[x]$, then $q \mid p$
+			\medskip
+		\item<5-> \textbf{Example}: $\Z$ % TODO: come up with more examples
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Ring Hierarchy}
+
+	\begin{center}
+		\usebeamercolor{frametitle}
+		\begin{tikzpicture}[
+				start chain = going right,
+				node distance = 1.5em,
+				every join/.style = {->,
+						shorten > = 2pt,
+						shorten < = 2pt},
+				every node/.style = {
+						draw,
+						on chain, join,
+						rounded corners = 2pt,
+						align = center,
+						scale = .7,
+						inner sep = 4pt},
+				highlight/.style = {
+						font = \bf,
+						fill = bg,
+					},
+			]
+			\node {Rings};
+			\node {Integral \\ Domains};
+			\node {Integrally \\ Closed \\ Domains};
+			\node[highlight] {Unique \\ Factorization \\ Domains};
+			\node {Principal \\ Ideal \\ Domains};
+			\node {Fields};
+		\end{tikzpicture}
+	\end{center}
+
+	\pause
+
+	\begin{definition}[UFD]
+		A commutative ring $R$ is a \emph{unique factorization domain} if every element factors uniquely into irreducible elements.
+
+		\note{Up to order and units}
+	\end{definition}
+
+	\bigskip
+
+	\begin{itemize}
+		\item \textbf{Example}: $\Z$
+		      \note{The integers are rather famously at UFD (fundamental theorem of arithmetic)}
+		\item \textbf{Non-example}: $\Z[i \sqrt{5}]$:
+		      $$6 = 2 \cdot 3 = (1 + i \sqrt{5}) (1 - i \sqrt{5})$$
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Ring Hierarchy}
+
+	\begin{center}
+		\usebeamercolor{frametitle}
+		\begin{tikzpicture}[
+				start chain = going right,
+				node distance = 1.5em,
+				every join/.style = {->,
+						shorten > = 2pt,
+						shorten < = 2pt},
+				every node/.style = {
+						draw,
+						on chain, join,
+						rounded corners = 2pt,
+						align = center,
+						scale = .7,
+						inner sep = 4pt},
+				highlight/.style = {
+						font = \bf,
+						fill = bg,
+					},
+			]
+			\node {Rings};
+			\node {Integral \\ Domains};
+			\node {Integrally \\ Closed \\ Domains};
+			\node {Unique \\ Factorization \\ Domains};
+			\node[highlight] {Principal \\ Ideal \\ Domains};
+			\node {Fields};
+		\end{tikzpicture}
+	\end{center}
+
+	\pause
+
+	\begin{definition}[PID]
+		A commutative ring $R$ is a \emph{principal ideal domain} if every ideal is generated by a single element.
+	\end{definition}
+
+	\begin{itemize}
+		\item<3-> \textbf{Example}: $\Z$, $\Q[x]$, $\Z[i]$
+		\item<4-> \textbf{Non-example}: $\Z[x]$ because of $(2, x)$
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Ring Hierarchy}
+
+	\begin{center}
+		\usebeamercolor{frametitle}
+		\begin{tikzpicture}[
+				start chain = going right,
+				node distance = 1.5em,
+				every join/.style = {->,
+						shorten > = 2pt,
+						shorten < = 2pt},
+				every node/.style = {
+						draw,
+						on chain, join,
+						rounded corners = 2pt,
+						align = center,
+						scale = .7,
+						inner sep = 4pt},
+				highlight/.style = {
+						font = \bf,
+						fill = bg,
+					},
+			]
+			\node {Rings};
+			\node {Integral \\ Domains};
+			\node {Integrally \\ Closed \\ Domains};
+			\node {Unique \\ Factorization \\ Domains};
+			\node {Principal \\ Ideal \\ Domains};
+			\node[highlight] {Fields};
+		\end{tikzpicture}
+	\end{center}
+
+	\note{Finally, we have the king: fields. Here, everything works nicely.}
+
+	\pause
+
+	\begin{definition}[Field]
+		"Things like the rationals" or "rings where you can divide".
+	\end{definition}
+
+	\begin{itemize}
+		\item<3-> \textbf{Example}: $\Q$, $\C$, $\R$
+		\item<4-> \textbf{Non-example}: $\Z$, $\Z[x]$
+	\end{itemize}
+
+	\note{You can add, multiply, divide--everyone's happy. Well, not quite everyone.}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Field Extensions}
+
+	\note{For example, this polynomial is not very happy living in $\Q[x]$}
+
+	\begin{align*}
+		f(x)
+		              & = x^2 + 5                           \\
+		\onslide<3->{ & = (x - i \sqrt{5})(x + i \sqrt{5})}
+	\end{align*}
+
+	\pause \bigskip
+
+	\begin{itemize}
+		\item<2-> Over $\Q$, $f$ is irreducible
+		\item<3-> Over $\C$, $f$ factors
+			$$e \qquad \pi \qquad \sqrt 7 \qquad 1 + 2 \sqrt17$$
+			\note{For example, $f$ doesn't care about $\pi$}
+		\item<4-> But $f$ is equally happy living in
+			\begin{equation*}
+				Q(i \sqrt5) = \{ a + b i \sqrt5 : a, b \in \Q \}
+			\end{equation*}
+	\end{itemize}
+
+\end{frame}

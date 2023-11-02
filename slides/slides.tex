@@ -1,0 +1,65 @@
+\documentclass{beamer}
+
+\title{{\small An Introduction to} \\ Algebraic Number Theory}
+\author{Alistair Pattison}
+\date{November 2, 2023}
+
+\usepackage{ali-macros, ali-algebra}
+\usepackage{qrcode}
+
+\usepackage{tikz}
+\usetikzlibrary{overlay-beamer-styles}
+\usetikzlibrary{graphs, quotes, positioning, chains, graphdrawing, shapes.callouts}
+\usegdlibrary{layered}
+
+% theming
+\usefonttheme{structuresmallcapsserif}
+\useinnertheme[]{rounded}
+
+% hide navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% colors
+\usecolortheme{spruce}
+\setbeamercolor{block title}{use=frametitle, fg=frametitle.fg, bg=frametitle.bg}
+\setbeamercolor{block body}{use=frametitle, bg=frametitle.bg!50!white}
+\setbeamercolor{structure}{fg=black}
+
+% lists
+\setbeamertemplate{itemize item}{-}
+\setbeamertemplate{itemize subitem}{-}
+\setbeamertemplate{itemize subsubitem}{-}
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+
+
+% show title at beginning of section
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt, center, rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+
+  \bigskip
+
+  % \tableofcontents[currentsection]
+  \vfill
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\input{sections/0-intro.tex}
+\input{sections/1-review.tex}
+\input{sections/2-number-fields-rings.tex}
+\input{sections/3-class-group.tex}
+\input{sections/4-conclusion.tex}
+
+\end{document}
