@@ -60,11 +60,111 @@
 \end{corrolary}
 
 \begin{definition}[Number ring]
-	The \em{number ring} of a number field $K$ is the ring $R = \mathbb A \cup K$.
+	The \em{number ring} of a number field $K$ is the ring $R = \mathbb A \cap K$.
 \end{definition}
 
 \begin{example}
 	The corresponding number ring for the cyclomatic field $\Q[\omega]$ is $\A \cup \Q[\omega] = \Z[\omega]$.
 \end{example}
 
+\begin{definition}[Embeddings]
+	An \textit{embedding} of a field $K$ in a field $F$ is a ring homomorphism $\sigma : K \to F$.
+\end{definition}
+
+\begin{theorem}
+	Any embedding is injective.
+\end{theorem}
+
+\begin{definition}[Trace and norm]
+	Let $K$ be a number field with embeddings $\sigma_1, \ldots, \sigma_n : K \to \C$ with $n = [K : \C]$. Then, the \textit{trace} of some element $\alpha \in K$ is
+	\begin{equation}
+		T(\alpha) = \sigma_1(\alpha) + \cdots \sigma_n(\alpha)
+	\end{equation}
+	and the \textit{norm} is
+	\begin{equation}
+		N(\alpha) = \sigma_1(\alpha) \cdots \sigma_n(\alpha).
+	\end{equation}
+\end{definition}
+
+\begin{definition}
+	\begin{equation}
+		t(n) =
+	\end{equation}
+\end{definition}
+
+\begin{theorem}
+	Let $K$ be a number field with an element $\alpha \in K$ Let $d$ be the degree of $\alpha$ and $n = [K : \C]$. Then,
+	\begin{equation}
+		T(\alpha) = \frac n d t (\alpha)
+	\end{equation}
+	and
+	\begin{equation}
+		N(\alpha) = (n(\alpha))^{n / d}.
+	\end{equation}
+\end{theorem}
+
+\begin{corrolary}
+	$T(\alpha)$ and $N(\alpha)$ are rational.
+\end{corrolary}
+
+\begin{corrolary}
+	If $\alpha$ is an algebraic integer, then $T(\alpha)$ and $N(\alpha)$ are integers.
+\end{corrolary}
+
+\begin{definition}[Relative trace and norm]
+	Let $K \subset L$ be two number fields and let $\sigma_1, \ldots, \sigma_n$ be the $n = [K : L]$ embeddings of $L$ in $\C$ that fix $K$ pointwise. Then, for $\alpha \in L$, the \textit{relative trace} is
+	\begin{equation}
+		T^L_K(\alpha) = \sigma_1(\alpha) + \cdots + \sigma_n(\alpha)
+	\end{equation}
+	and the \textit{relative norm} is
+	\begin{equation}
+		N^L_K(\alpha) = \sigma_1(\alpha) \cdots \sigma_n(\alpha).
+	\end{equation}
+\end{definition}
+
+\begin{theorem}
+	Let $\alpha \in L$ and take $d \ceq \deg_K(\alpha)$. Then,
+	% TODO: finish
+\end{theorem}
+
+\begin{corrolary}
+	The relative trace and norm of $\alpha$ are in $K$. If $\alpha \in \A \cap L$, then they are in $\alpha \cap K$.
+\end{corrolary}
+
+\begin{theorem}[Transitivity of the trace and norm]
+	Let $K \subset L \subset M$ be number fields. Then, for all $\alpha \in M$,
+	\begin{align}
+		T_K^L(T_L^M(\alpha)) & = T_K^M(\alpha), \\
+		N_K^L(N_L^M(\alpha)) & = N_K^M(\alpha).
+	\end{align}
+\end{theorem}
+
+\begin{proof}
+	% TODO: tex proof
+\end{proof}
+
+\begin{definition}[Discriminant]
+	Let $K$ be a number field of with degree $n$ over $\Q$. Let $\sigma_1, \ldots, \sigma_n$ be the embeddings of $K$ in $\C$. Then, the discriminant of $\alpha_1, \ldots, \alpha_n \in K$ is
+	\begin{equation}
+		\begin{aligned}
+			\disc(\alpha_1, \ldots, \alpha_n)
+			 & = \det(\sigma_i(\alpha_j))^2
+			 & = \det \begin{pmatrix}
+				          \sigma_1(\alpha_1) & \cdots & \sigma_1(\alpha_n) \\
+				          \vdots             & \ddots &                    \\
+				          \sigma_n(\alpha_1) &        & \sigma_n(\alpha_n)
+			          \end{pmatrix}^2.
+		\end{aligned}
+	\end{equation}
+\end{definition}
+
+\begin{theorem}[Discriminant with respect to the trace]
+	\begin{equation}
+		\disc(\alpha_1, \ldots, \alpha_n) = \det \left(T(a_i a_j)\right)_{ij}
+	\end{equation}
+\end{theorem}
+
+\begin{theorem}[Discriminant of linearly dependent numbers]
+	$\disc(\alpha_1, \ldots, \alpha_n) = 0$ iff $\alpha_1, \ldots, \alpha_n$ are linearly dependent.
+\end{theorem}
 
