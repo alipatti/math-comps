@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\title{\scshape {\normalsize An Introduction to} \\ {\scshape Algebraic Number Theory}}
+\author{Alistair Pattison \\ {\small Carleton College Math Department}}
+\date{November 2023}
+
+\usepackage{ali-macros, ali-algebra}
+\usepackage{ali-lists, ali-theorems}
+
+\usepackage{biblatex}
+\usepackage[linkcolor=black, colorlinks]{hyperref}
+\addbibresource{references.bib}
+
+\usepackage{tikz}
+\usetikzlibrary{chains, graphs, positioning, quotes, graphdrawing}
+\usegdlibrary{layered}
+
+\usepackage{floatrow}
+\floatplacement{figure}{t}
+\floatplacement{table}{t}
+
+\def\arraystretch{1.4}
+
+\tikzset{
+	node distance = 2.5em,
+	arrow/.append style = {->,
+		shorten > = 2pt,
+		shorten < = 2pt},
+	box/.append style = {
+		draw,
+		rounded corners = 2pt,
+		align = center,
+		inner sep = 4pt,
+	}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This paper is a whirlwind introduction to the field of algebraic number	theory with the goal of stating and unpacking two important theorems: Dirichlet's unit Theorem and the fact that the class number is finite. Along the way, we'll cover things like the number fields, algebraic integers, cyclotomic fields, Dedekind domains, and generalizations of primes.
+\end{abstract}
+
+\bigskip
+
+\tableofcontents
+
+\pagebreak
+
+\input{sections/0-intro.tex}
+\input{sections/1-preliminaries.tex}
+\input{sections/2-number-fields.tex}
+\input{sections/3-number-rings.tex}
+\input{sections/4-class-group.tex}
+\input{sections/5-conclusion.tex}
+
+\end{document}

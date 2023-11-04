@@ -1,0 +1,63 @@
+\section{Number Fields}
+
+Enough beating around the bush, here's the definition
+
+\begin{definition}[Number Field]
+	A \emph{number field} $K \subset \C$ is a finite extension of $\Q$.
+\end{definition}
+
+\begin{definition}[Algebraic number]
+	A complex number $\alpha \in \C$ is an \emph{algebraic number} if it is the root of some monic polynomial $f \in \Q[x]$.
+\end{definition}
+
+\begin{theorem}
+	Any number field can be written in the form
+	\begin{equation*}
+		K
+		= \Q[\alpha]
+		= \spn_\Q \{ 1, \alpha, \alpha^2, \ldots, \alpha^{n-1} \}
+	\end{equation*}
+	where $n$ is the degree of the minimal polynomial of $\alpha$.
+\end{theorem}
+
+\begin{proof}
+	% TODO: write proof
+\end{proof}
+
+Although we could use any algebraic number for $\alph$, for the purposes of this paper we'll focus on the two following families
+
+\begin{definition}[Cyclotomic field]
+
+\end{definition}
+
+\begin{definition}[Quadratic field]
+
+\end{definition}
+
+It seems like positive $m$ should be the simpler case, but itt turns out we know very little about these when $m > 0$ (more on this later).
+
+\subsection{Complex Embeddings}
+
+\begin{figure}
+	% TODO: make this diagram better, show something about embeddings?
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\draw[->] (-1.2,0) -- (1.2,0) node[right] {Re};
+		\draw[->] (0,-1.2) -- (0,1.2) node[above] {Im};
+		\foreach \i in {0,1,2,3,4}
+			{
+				\draw[red,->] (0,0) -- ({cos(360*\i/5)},{sin(360*\i/5)});
+				\node[red,anchor=north west] at ({cos(360*\i/5)},{sin(360*\i/5)}) {$\omega^{\i}$};
+			}
+	\end{tikzpicture}
+	\caption{The fifth roots of unity.}
+\end{figure}
+
+\begin{definition}[Trace and norm]
+
+\end{definition}
+
+\begin{definition}[Relative trace and norm]
+
+\end{definition}
+
