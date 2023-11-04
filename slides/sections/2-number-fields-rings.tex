@@ -55,12 +55,14 @@
 		We use $\mathbb A$ to denote the set of all algebraic integers.
 	\end{definition}
 
-	\begin{itemize}
-		\item<3-> Any integer is an algebraic integer
-		\item<4-> $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2$
-		\item<5-> $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$
-		\item<6-> $\mathbb A$ is a subring of $\C$
-			\note{show that $\alpha - \beta, \alpha \beta \in \mathbb A$}
+	\pause \medskip
+
+	\begin{itemize}[<+->]
+		\item Any integer $k$ is an algebraic integer because of $f(x) = x - k$
+		\item $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 + 5$
+		\item $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$
+		\item $\mathbb A$ is a subring of $\C$
+		      \note{show that $\alpha - \beta, \alpha \beta \in \mathbb A$}
 	\end{itemize}
 
 \end{frame}
@@ -83,7 +85,7 @@
 		\item $\mathcal O_{\Q[i]} = \Z[i]$
 		\item $\mathcal O_{\Q[\zeta]} = \Z[\zeta]$ for primitive roots $\zeta$
 		      \note{But number rings aren't always this nice, or even one-dimensional.}
-		\item $\mathcal O_{\Q[\sqrt 5]}$ = \Z[1, \frac12 + \frac12 \sqrt 5]$
+		\item $\mathcal O_{\Q[\sqrt 5]} = \Z [1, \frac12 + \frac12 \sqrt 5]$
 	\end{itemize}
 
 	\note{It turns out that these things have some nice properties. So nice in fact that mathemeticians have done what they love most and come up with another definition.}
@@ -125,11 +127,11 @@
 		\item<3-> In $R = \Z[i \sqrt 5]$,
 			\begin{align*}
 				6   & = {\color<5>{red}{2}}
-				\cdot \color<6>{red}{3}                                               \\
+				\cdot \color<6>{red}{3}                                                \\
 				    & = {\color<7>{red}{(1 + i \sqrt{5})}}
-				{\color<8>{red}{(1 - i \sqrt{5})}}                                    \\[1em]
+				{\color<8>{red}{(1 - i \sqrt{5})}}                                     \\[1em]
 				\onslide<4->{
-				(6) & = {\color<5,7,8>{red}{{(2, 1 + i \sqrt5)}}}^{\color<5>{red}{2}}
+				(6) & = {\color<5,7,8>{red}{(2, 1 + i \sqrt5)}} {}^{\color<5>{red}{2}}
 				\, {\color<6,7>{red}{(3, 1 + i \sqrt5)}}
 				\, {\color<6,8>{red}{(3, 1 - i \sqrt5)}}
 				}
@@ -144,7 +146,7 @@
 	\framesubtitle{In the class hierarchy}
 
 	\begin{theorem}
-		A UFD is a PID iff it's a Dedekind domain.
+		A Dedekind domain has unique factorization iff it's a PID.
 	\end{theorem}
 
 	\bigskip \pause
