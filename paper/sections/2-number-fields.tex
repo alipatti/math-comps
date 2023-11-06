@@ -1,63 +1,115 @@
 \section{Number Fields}
 
-Enough beating around the bush, here's the definition
+We begin by defining the object of interest:
 
 \begin{definition}[Number Field]
-	A \emph{number field} $K \subset \C$ is a finite extension of $\Q$.
+    A \textbf{number field} $K \subset \C$ is a finite extension of $\Q$.
 \end{definition}
 
-\begin{definition}[Algebraic number]
-	A complex number $\alpha \in \C$ is an \emph{algebraic number} if it is the root of some monic polynomial $f \in \Q[x]$.
-\end{definition}
+For those comfortable with fields (e.g. through a course on Galois Theory), this definition seems completely natural. But it's often helpful to instead think about number fields $\Q(\alpha)$ as finite-degree vector spaces over $\Q$. For example, the number field introduced at the end of the previous section can be rewritten as
+\begin{equation}
+    \Q(i \sqrt 5) = \spn_\Q \{ 1, \ i \sqrt 5 \},
+\end{equation}
+a degree-two rational vector space with basis $\{ 1, \ i \sqrt 5 \}$.
+We claim (without proof) that we can do the same thing for any number field.
 
 \begin{theorem}
-	Any number field can be written in the form
-	\begin{equation*}
-		K
-		= \Q[\alpha]
-		= \spn_\Q \{ 1, \alpha, \alpha^2, \ldots, \alpha^{n-1} \}
-	\end{equation*}
-	where $n$ is the degree of the minimal polynomial of $\alpha$.
+    Any number field can be written in the form
+    \begin{equation*}
+        K
+        = \Q[\alpha]
+        = \spn_\Q \{ 1, \ \alpha, \ \alpha^2, \ \ldots, \ \alpha^{n-1} \}
+    \end{equation*}
+    where $\alpha \in \C$ is the root of some degree-$n$ polynomial in $\Q[x]$. We call $n$ the \textbf{degree} of $K$.
 \end{theorem}
 
-\begin{proof}
-	% TODO: write proof
-\end{proof}
+Numbers $\alpha \in \C$ that are roots of polynomials over $\Q$ are so special that mathematicians came up with a name for them:
 
-Although we could use any algebraic number for $\alph$, for the purposes of this paper we'll focus on the two following families
+\begin{definition}[Algebraic number]
+    A complex number $\alpha \in \C$ is an \textbf{algebraic number} if it is the root of some irreducible monic polynomial $f \in \Q[x]$. We call $f$ the \textbf{minimal polynomial} of $\alpha$ and say that $\alpha$ has \textbf{degree} $\deg \alpha = \deg f$.
+\end{definition}
+
+If $\alpha$ and $\beta$ are algebraic numbers with the same minimal polynomial, we say that they are \emph{conjugate}---for example $i$ and $-i$ are both roots of the polynomial $x^2 + 1$. In general, if $\alpha \in \C$ has degree $\deg \alpha = n$, then $\alpha$ has $n - 1$ conjugates by the fact that $\C$ is algebraically closed.
+
+Most numbers we're familiar with are algebraic, for example any combination of radicals and rational numbers. Some famous non-examples are transcendental numbers like $\pi$ and $e$.
+
+Although any algebraic number $\alpha$ produces a valid number field $\Q(\alpha)$, for the purposes of this paper we'll focus on two ``classic'' examples: cyclotomic and quadratic fields.
 
 \begin{definition}[Cyclotomic field]
-
+    The $k$th \textbf{cyclotomic field} is the number field $\Q(\zeta_k)$ where $\zeta_k = e^{2 \pi i / k}$ is a $k$th root of unity.
 \end{definition}
 
 \begin{definition}[Quadratic field]
-
+    The $m$th \textbf{quadratic field} is the number field $K = \Q(\sqrt{m})$. When $m > 0$, we call $K$ a \textbf{real quadratic field}. When $m < 0$, we call $K$ an \textbf{imaginary quadratic field}.
 \end{definition}
 
-It seems like positive $m$ should be the simpler case, but itt turns out we know very little about these when $m > 0$ (more on this later).
+In quadratic fields, we typically assume that $m$ is squarefree. If not, $m = nk^2$ for some $n, k \in \Z$ and
+\begin{equation}
+    \Q(\sqrt m) = \Q(k \sqrt n) = \Q(n).
+\end{equation}
+One might expect that $m > 0$ produces be the simpler case, but it turns out that the opposite is true: we know very little about real quadratic fields (more on this later).
+
+% FIX: transition?
 
 \subsection{Complex Embeddings}
 
-\begin{figure}
-	% TODO: make this diagram better, show something about embeddings?
-	\centering
-	\begin{tikzpicture}[scale=2]
-		\draw[->] (-1.2,0) -- (1.2,0) node[right] {Re};
-		\draw[->] (0,-1.2) -- (0,1.2) node[above] {Im};
-		\foreach \i in {0,1,2,3,4}
-			{
-				\draw[red,->] (0,0) -- ({cos(360*\i/5)},{sin(360*\i/5)});
-				\node[red,anchor=north west] at ({cos(360*\i/5)},{sin(360*\i/5)}) {$\omega^{\i}$};
-			}
-	\end{tikzpicture}
-	\caption{The fifth roots of unity.}
-\end{figure}
+% FIX: motivate embeddings?
 
-\begin{definition}[Trace and norm]
+\begin{definition}[Embedding]
+    Let $K$ be a number field. An \textbf{embedding} of $K$ in $\C$ is a ring homomorphism $\sigma : K \hookrightarrow \C$.
 
+    Embeddings are always injective. (This follows from the fact that the kernel of a homomorphism must be an ideal and the only ideals of a field are the zero ideal and the field itself).
 \end{definition}
 
-\begin{definition}[Relative trace and norm]
+Algebraic number fields $K = \Q(\alpha)$ are subsets of $\C$, so there is a trivial embedding given by $x \mapsto x$. But this isn't the only way to map number fields onto the complex plane. For quadratic fields $Q(\sqrt{m})$, the map
+\begin{equation}
+    a + b \sqrt{m} \; \mapsto \; a - b \sqrt{m}
+\end{equation}
+is an embedding (exercise: verify this) because $a - b \sqrt{m}$ and $a + \sqrt{m}$ are conjugate, i.e., roots of the same minimal polynomial in $\Q[x]$. In general for an algebraic number field $K = \Q(\alpha)$, there are $n = \deg \alpha$ embeddings: one trivial identity map and $n-1$ others given by sending $\alpha$ to any of its conjugates.
 
+For cyclotomic fields, this amounts to sending $\zeta_k$ to any of the other $k$th primitive roots of unity, of which there are $\phi(k)$. \autoref{fig:fifth-roots-permutation} shows the possible destinations of $\zeta$ for $k = 5$.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=2]
+        % axes
+        \draw[->] (-1.3, 0) -- (1.3, 0) node[right] {Re};
+        \draw[->] (0,-1.3) -- (0,1.3) node[above] {Im};
+
+        \node[circle, fill, inner sep=1pt, "$\zeta = e^{2 \pi i / 5}$" {right, xshift=.5em}]
+        (zeta-1) at ({cos(360/5)},{sin(360/5)}) {};
+
+        \foreach \i in {2,3,4} {
+                \node[circle, fill, inner sep=1pt, "$\zeta^{\i}$" left]
+                (zeta-\i) at ({cos(360*\i/5)},{sin(360*\i/5)}) {};}
+
+        \begin{scope}[
+                ->,
+                red,
+                dashed,
+                bend right,
+                shorten >=2pt,
+                shorten <=5pt,
+                every node/.style={ fill=white, inner sep=3pt, }
+            ]
+
+            \draw (zeta-1) edge[loop right, shorten >=3pt, shorten <=3pt] node[fill=none] {$\sigma_1$} (zeta-1);
+            \draw (zeta-1) to node {$\sigma_2$} (zeta-2);
+            \draw (zeta-1) to node {$\sigma_3$} (zeta-3);
+            \draw[bend left] (zeta-1) to node {$\sigma_4$} (zeta-4);
+        \end{scope}
+
+    \end{tikzpicture}
+    \caption{Where $\zeta = e^{2 \pi i / 5}$ gets sent by the four embeddings of the fifth cyclotomic field $\Q(\zeta)$.}
+    \label{fig:fifth-roots-permutation}
+\end{figure}
+
+Before we move on, we define the norm which---while a useful object in its own right---we introduce mostly for its utility later on in proving \autoref{thm:clas-number-finite}.
+
+\begin{definition}[Norm]
+    Let $K = \Q(\alpha)$ be a number field and let $\sigma_1, \ldots, \sigma_n : K \to \C$ denote the complex embeddings of $K$. The \textbf{norm} of $\alpha \in K$ is
+    \begin{equation}
+        \Norm^K(\alpha) = \sigma_1(\alpha) \, \sigma_2(\alpha) \; \cdots \; \sigma_n(\alpha).
+    \end{equation}
 \end{definition}
 

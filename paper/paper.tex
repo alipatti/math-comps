@@ -4,23 +4,32 @@
 \author{Alistair Pattison \\ {\small Carleton College Math Department}}
 \date{November 2023}
 
+% personal macros (from github.com/alipatti/dotfiles)
 \usepackage{ali-macros, ali-algebra}
 \usepackage{ali-lists, ali-theorems}
 
+% references
 \usepackage{biblatex}
 \usepackage[linkcolor=black, colorlinks]{hyperref}
 \addbibresource{references.bib}
 
-\usepackage{tikz}
-\usetikzlibrary{chains, graphs, positioning, quotes, graphdrawing}
-\usegdlibrary{layered}
 
+% float positioning
 \usepackage{floatrow}
 \floatplacement{figure}{t}
 \floatplacement{table}{t}
 
+% spacing
+\usepackage{parskip}
+
+% table formatting
+\usepackage{array}
 \def\arraystretch{1.4}
 
+% diagrams
+\usepackage{tikz}
+\usetikzlibrary{chains, graphs, positioning, quotes, graphdrawing, arrows}
+\usegdlibrary{layered}
 \tikzset{
 	node distance = 2.5em,
 	arrow/.append style = {->,
@@ -33,20 +42,32 @@
 		inner sep = 4pt,
 	}
 }
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% paper-specific macros
+\DeclareMathOperator{\Norm}{N}
+\DeclareMathOperator{\Trace}{T}
 
 \begin{document}
 
+\thispagestyle{empty}
+
 \maketitle
 
-\begin{abstract}
-	This paper is a whirlwind introduction to the field of algebraic number	theory with the goal of stating and unpacking two important theorems: Dirichlet's unit Theorem and the fact that the class number is finite. Along the way, we'll cover things like the number fields, algebraic integers, cyclotomic fields, Dedekind domains, and generalizations of primes.
-\end{abstract}
+% \begin{abstract}
+%     This paper is a whirlwind introduction to the field of algebraic number	theory with the goal of stating and unpacking two important theorems: Dirichlet's unit Theorem and the fact that the class number is finite.
+%     Along the way, we'll cover things like the number fields, algebraic integers, cyclotomic fields, Dedekind domains, and generalizations of primes.
+% \end{abstract}
 
 \bigskip
 
 \tableofcontents
 
-\pagebreak
+\newpage
+
+\pagestyle{plain}
+\setcounter{page}{1}
 
 \input{sections/0-intro.tex}
 \input{sections/1-preliminaries.tex}
@@ -54,5 +75,9 @@
 \input{sections/3-number-rings.tex}
 \input{sections/4-class-group.tex}
 \input{sections/5-conclusion.tex}
+
+\pagebreak
+
+\printbibliography
 
 \end{document}

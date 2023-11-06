@@ -1,8 +1,77 @@
 \section{Conclusion}
 
-% TODO: describe state of research 
-% - finite number of negative (imaginary) quadratic fields
-% - this wasn't known until 
-% - these things are very easy to define once you know a little algebra, but very little is known about real quadratic fields
+To conclude, we briefly describe the behavior of the class number in the special cases of quadratic and cyclotomic fields.
 
-\printbibliography
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                title={The class number of $\Q(\sqrt{-m})$},
+                xlabel={$k$},
+                only marks,
+                mark size=.5pt,
+                mark options={draw=black},
+                scaled x ticks=false
+            ]
+            \addplot table {class-numbers/imaginary-quadratic.dat};
+        \end{axis}
+    \end{tikzpicture}
+    % imaginary quadratic: https://oeis.org/A000924
+    \caption{The long-term behavior of $h(\Q(\sqrt{-m}))$, taken from the OEIS \cite[A000924]{oeis}.}
+    \label{fig:imaginary-quadratic-class-number}
+\end{figure}
+
+In the imaginary quadratic case, it was recently proven that there are only 9 values for $m$ for which $\Q[\sqrt{-m}]$ is a UFD, i.e., has class number 1.
+They are
+\begin{equation}
+    m = 1, 2, 3, 7, 11, 19, 43, 67, 163
+\end{equation}
+and together known as the Heegner numbers \cite[A000924]{oeis} after Kurt Heegner who proved\footnote{with minor flaws} in 1952 that this list was complete. In the long term, the class numbers for imaginary quadratic fields tend towards infinity as is shown in \autoref{fig:imaginary-quadratic-class-number}.
+
+One might reasonably hope that the purely-real quadratic case is simpler: it's not. We know comparatively very little about $\Q(\sqrt m)$ when $m > 0$. It's conjectured that there are infinitely many $m$ such that $\Q(\sqrt m)$ is a UFD, but the problem is open.
+The first few $m$ that produce quadratic fields with unique factorization are
+\begin{equation}
+    m = 2, 3, 5, 6, 7, 11, 13, 14, 17, 19, 21, 22, 23, 29, \ldots
+\end{equation}
+More are available on the OEIS \cite[A003172]{oeis}. Unlike the imaginary case, the there isn't clear asymptotic behavior for $h$ as $m$ grows (\autoref{fig:real-quadratic-class-number}).
+
+\begin{figure}[h]
+    \begin{tikzpicture}
+        \begin{axis}[
+                title={The class number of $\Q(\sqrt{m})$},
+                xlabel={$k$},
+                only marks,
+                mark size=.5pt,
+                mark options={draw=black}
+            ]
+            \addplot table {class-numbers/real-quadratic.dat};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{The long-term behavior of $h(\Q(\sqrt{m}))$, calculated with \texttt{sage}.}
+    \label{fig:real-quadratic-class-number}
+\end{figure}
+
+For cyclotomic fields, things are quite strange: the class number of $\Q[\zeta_k]$ is $1$ for the first $22$ integers, but when $k = 23$, suddenly it jumps to $3$. At $k = 43$, the class number is already up to $211$, and by the time you reach $k = 211$ the class number is the enormous value
+$$
+    49238446584179914120276706365116286443831
+$$
+But for the preceding field ($k = 210$), the class number is a measly $13$. In the long term, $h$ becomes arbitrarily large: \autoref{fig:cyclotomic-class-number}.
+
+\begin{figure}[h]
+    \begin{tikzpicture}
+        \begin{axis}[
+                title={The class number of $\Q(\zeta_k)$},
+                xlabel={$k$},
+                ymode=log,
+                only marks,
+                mark size=.5pt,
+                mark options={draw=black}
+            ]
+            \addplot table {class-numbers/cyclotomic.dat};
+        \end{axis}
+    \end{tikzpicture}
+    % cyclotomic: https://oeis.org/A061653
+    \caption{The long-term behavior of $h(\Q(\zeta_k))$, taken from the OEIS \cite[A061653]{oeis}}
+    \label{fig:cyclotomic-class-number}
+\end{figure}
+

@@ -1,58 +1,144 @@
-% TODO: Use example of finding all primative pythagorean triples to introduce algebraic number theory
+\section{Introduction}
 
-\begin{figure}
-	\centering
-	% TODO: show how some gaussian integer factors into primes
-	\begin{tikzpicture}[scale=.7]
-		\draw[->] (-4,0) -- (4,0) node[right] {$\Re$};
-		\draw[->] (0,-4) -- (0,4) node[above] {$\Im$};
+Imagine that you want to find all integer solutions of the equation
+\begin{equation}
+    \label{eqn:simple-diophantine}
+    x y - x + 3 \, y - z - 3 = 0.
+\end{equation}
+This is an example of a Diophantine equation, and a classic way to solve them is via factoring. By rewriting \autoref{eqn:simple-diophantine} as
+\begin{equation}
+    \begin{aligned}
+        z & = x y - x + 3 \, y - 3                 \\
+          & = \left(x + 3\right)\left(y - 1\right)
+    \end{aligned}
+\end{equation}
+and enumerating all factors of $z = ab$, one can recover $x = a - 3$ and $y = b + 1$. The first few solutions are
+\begin{equation}
+    \begin{gathered}
+        z = 0, \quad
+        x = -3, \quad
+        y = 1; \\
+        z = 1, \quad
+        x = -2, \quad
+        y = 2; \\
+        z = 1, \quad
+        x = -4, \quad
+        y = 0.
+    \end{gathered}
+\end{equation}
 
-		\foreach \a in {-3,-2,-1,0,1,2,3}
-			{
-				\foreach \b in {-3,-2,-1,0,1,2,3}
-					{
-						\fill[gray] (\a, \b) circle (1.5pt);
-					}
-			}
-	\end{tikzpicture}
+\begin{figure}[!b]
+    % factoring in gaussian integers
+    \centering
+    \begin{tikzpicture}[scale=.7,
+            every label quotes/.style={font=\footnotesize},
+            arrow/.append style={shorten <=4pt,shorten >=4pt,}
+        ]
+        \draw[->] (-4,0) -- (4,0) node[right] {Re};
+        \draw[->] (0,-4) -- (0,4) node[above] {Im};
 
-	\caption{The lattice of Gaussian integers $\Z[i]$ in the complex plane.}
+        \foreach \a in {-3,-2,-1,0,1,2,3}
+            {
+                \foreach \b in {-3,-2,-1,0,1,2,3}
+                    {
+                        \fill[gray] (\a, \b) circle (1pt);
+                    }
+            }
+
+        \node[circle, fill=red, inner sep=1pt, "$2$" above right ] at (2, 0) {};
+        \node[circle, fill=blue, inner sep=1pt, "$1 + i$" above] at (1, 1) {};
+        \node[circle, fill=blue, inner sep=1pt, "$1 - i$" below right] at (1, -1) {};
+
+        \draw[bend left = 20, arrow]  (1, 1) to (2, 0);
+        \draw[bend right = 20, arrow]  (1, -1) to (2, 0);
+
+        % (-1 - I) * (-2*I +1) = I - 3
+
+        \node[circle, fill=red, inner sep=1pt, "$-1 -2 i$" below] at (-1, -3) {};
+        \node[circle, fill=blue, inner sep=1pt, "$-1 - 2i$" above left] at (-2, -1) {};
+
+        \draw[bend right = 10, arrow]  (1, 1) to (-1, -3);
+        \draw[bend right = 10, arrow]  (-2, -1) to (-1, -3);
+
+    \end{tikzpicture}
+
+    \caption{The prime factorizations of $2$ and $-1-2i$ in the lattice of Gaussian integers $\Z[i]$.}
+    \label{fig:gaussian-integers}
 \end{figure}
 
-% TODO: why do a and b have to be odd?
+\subsection{Primitive Pythagorean Triples}
+
+This technique is great when it applies, but it often doesn't work for more complicated Diophantine equation. For example, imagine we want to find all primitive Pythagorean triples, i.e., solutions to
+\begin{equation}
+    \label{eqn:x2-y2-z2}
+    z^2 = x^2 + y^2
+\end{equation}
+with $x, y, z \in \Z$ all relatively prime. The polynomial $x^2 + y^2$ is irreducible over $\Z[x]$, so we can't use the same factoring approach from the previous problem.
+
+An unintuitive but fruitful idea is to take a leap of faith and reframe this question about the (traditional) integers as a factoring problem over the Gaussian integers $\Z[i]$ (\autoref{fig:gaussian-integers}). We start by noting that \autoref{eqn:x2-y2-z2} factors as
+\begin{equation}
+    \begin{aligned}
+        z^2 & = x^2 + y^2                                                                     \\
+            & = \underbrace{(x + iy)}_\alpha \underbrace{(x - iy)}_\beta \qquad \in \Z[i][x],
+    \end{aligned}
+\end{equation}
+and one can show that $\alpha, \beta \in \Z[i]$ are relatively prime because $x, y \in \Z$ are relatively prime by assumption. Because $\Z[i]$ has unique factorization, $\alpha$ must be a square, i.e., $\alpha = u \gamma^2$ where $\gamma \in \Z[i]$ and $u \in \Z[i] \units = \{ \pm 1, \pm i \}$. (This is analogous to how in the traditional integers, $rs = n^2$ with $(r, s) = 1$ implies that $r = \pm k^2$ for some $k$. In $\Z[i]$, the units $\{ \pm 1, \pm i \}$ take the place of the optional minus sign in front of $k$.)
+
+For the sake of brevity, we ignore the pesky units and consider only the case where $u = 1$, i.e.,
+\begin{equation}
+    \begin{aligned}
+        \alpha & = \gamma^2              \\
+               & = (a + bi)^2            \\
+               & = (a^2 - b^2)+ 2ab \, i
+    \end{aligned}
+\end{equation}
+for some $a, b \in \Z$. Referring back to our original definition of $\alpha = x + iy$, we have that
+\begin{equation}
+    \begin{gathered}
+        x = \Real(\alpha) = a^2 - b^2, \\
+        y = \Imag(\alpha) = 2ab, \\
+    \end{gathered}
+\end{equation}
+and a bit of algebra gets us
+\begin{equation}
+    z =  a^2 + b^2.
+\end{equation}
+Whenever $a$ and $b$ are relatively prime, the generated triple will be primitive. We enumerate the first few positive solutions (given by $a > b > 0$) in \autoref{tab:pythagorean-triples}.
 
 \begin{table}
-	\centering
-	\begin{tabular}{c|c|r}
-		$a$ & $b$ &                      \\
-		\hline
-		$2$ & $1$ & $3^2 + 4^2 = 5^2$    \\
-		$3$ & $2$ & $5^2 + 12^2 = 13^2$  \\
-		% $3$ & $1$ & $8^2 + 6^2 = 10^2$   \\
-		$4$ & $3$ & $7^2 + 24^2 = 25^2$  \\
-		$4$ & $2$ & $12^2 + 16^2 = 20^2$ \\
-		$4$ & $1$ & $15^2 + 8^2 = 17^2$
-	\end{tabular}
-	% TODO: add table of all pythagorean triples
-	\caption{The primative Pythagorean triples.}
+    \centering
+    \footnotesize
+    \begin{tabular}{c | c | r c}
+        $a$ & $b$ &                                        \\
+        \cline{1-3}
+        $2$ & $1$ & $3^2 + 4^2 = 5^2$                      \\
+        $3$ & $2$ & $5^2 + 12^2 = 13^2$                    \\
+        $3$ & $1$ & $8^2 + 6^2 = 10^2$   & (not primitive) \\
+        $4$ & $3$ & $7^2 + 24^2 = 25^2$                    \\
+        $4$ & $2$ & $12^2 + 16^2 = 20^2$ & (not primitive) \\
+        $4$ & $1$ & $15^2 + 8^2 = 17^2$                    \\
+        $5$ & $4$ & $9^2 + 40^2 = 41^2$                    \\
+        $5$ & $3$ & $16^2 + 30^2 = 34^2$ & (not primitive)
+    \end{tabular}
+    \caption{The first few Pythagorean triples, primitive when the parity of $a$ and $b$ are different.}
+    \label{tab:pythagorean-triples}
 \end{table}
 
-% TODO: note what was cool about this derevation
+\subsection{Overview}
 
-We started with a problem strictly about the integers, and
+This is admittedly a toy example, but it illustrates an important point. We started with a problem strictly in the integers, and only by reframing it as a problem about a larger ring $\Z[i] \subset \C$ were we able to solve it. This is the essence of algebraic number theory: using tools from algebra like rings and field extensions to deepen our understanding about the integers and the primes.
 
-% TODO: use Marcus's definition of algebraic number theory
-
-% TODO: introduce this quote
-
-This paper will build towards proving that the ideal class group is finite, starting from Carleton's introductory algebra class. However, it will at times move very, very quickly and leave gaps in the exposition for the sake of brevity.
-To quote Richard Feynman:
-
+While this is a nice, romantic vision of the field, it would be nice to have something more concrete. Thankfully, Daniel Marcus provides a much more pragmatic definition in the very first sentence of his book \cite[1]{marcus}:
 \begin{quote}
-	I am going to give what I will call an elementary demonstration. But elementary does not mean easy to understand. Elementary means that very little is required to know ahead of time in order to understand it, except to have an infinite amount of intelligence.
-	% TODO: cite
-	% https://www.google.com/books/edition/_/o2VLdx2td0cC
-	% p. 148
+    ``Algebraic number theory is essentially the study of number fields.''
 \end{quote}
 
-If this paper piques your interest, I encourage you to go read \textcite{marcus}.
+The goal of this paper is in its title: to provide an introduction to algebraic number theory. We'll start with a crash course in algebra, including some things omitted or very briefly covered in Carleton's intro algebra class. Then, we'll talk about algebraic number fields (the things Marcus speaks so highly of) and their corresponding integer rings before defining and unpacking the class group and the class number. To close, we'll talk a bit about the current state of the field and place this paper's results into the larger context of math. Unique factorization (and its failure) will provide a thread through the whole piece.
+
+My hope is that anyone who has taken Math 342 at Carleton or the equivalent could conceivably pick up this paper and read it from top to bottom with no consultation of outside material.
+That's not to say that it'll be a light read--at times we'll move very quickly and leave gaps in the exposition for the sake of brevity. To quote Richard Feynman \cite[148]{feynmans-lost-lecture}:
+
+\begin{quote}
+    ``I am going to give what I will call an elementary demonstration. But elementary does not mean easy to understand. Elementary means that very little is required to know ahead of time in order to understand it, except to have an infinite amount of intelligence.''
+\end{quote}
+

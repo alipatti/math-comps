@@ -1,122 +1,278 @@
 \section{Number Rings}
 
-We have a generalization of the rationals to the complex plane, now we need an analogue to the integers.
+In the previous section, we extend the notion of rational number into the complex plane. Now, we develop a complex analogue to the integers.
 
 \begin{definition}[Algebraic Integer]
-	An \emph{algebraic integer} is a complex number $\alpha$ that is the root of some monic polynomial $f \in \Z[x]$.
+    An \textbf{algebraic integer} is a complex number $\alpha$ that is the root of some monic polynomial $f \in \Z[x]$. We use $\mathbb A$ to denote the set of all algebraic integers.
 
-	We use $\mathbb A$ to denote the set of all algebraic integers.
+    Using the idea of integrality from \autoref{def:integral-element}, one can equivalently define
+    \begin{equation}
+        \mathbb A = \{ \alpha \in \C : \text{$\alpha$ is integral} \}.
+    \end{equation}
 \end{definition}
 
-We would hope that the familiar integers $\Z$ remain integers under this more general definition, and that is indeed the case.
-
-$f(x) = x - k$
-
+As one would hope, our familiar integers $\Z$ remain integers under this more general definition: $a \in \Z$ is the root of $f_a(x) = x - a \in \Z[x]$. But $\mathbb A$ also contains more complicated elements that don't at all obey our intuition of integrality:
 \begin{itemize}
-	\item Any integer $k$ is an algebraic integer because of $f(x) = x - k$
-	\item $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 + 5$
-	\item $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$
-	\item $\mathbb A$ is a subring of $\C$
-	      \note{show that $\alpha - \beta, \alpha \beta \in \mathbb A$}
+    \item $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 + 5$.
+    \item $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$.
+    \item $\frac12 + \frac12 \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 - x - 1$.
 \end{itemize}
+Not all algebraic numbers are algebraic integers, but non-integral elements tend to look a little bit more complicated. For example, $- \frac 3 4 + \frac i 4 \sqrt 7 \not \in \mathbb A$ because its minimal polynomial $x^2 + \frac32x + 1$ has a non-integer coefficient.
 
-% TODO: give process to generate minimal $f$ for $\alpha + \beta$ and $\alpha \beta$?
+It turns out (although we won't prove it) that $\mathbb A$ is a subring of $\C$, i.e., closed under addition and subtraction. Given $\alpha, \beta \in \mathbb A$, the procedure for generating minimal polynomials for $\alpha + \beta$ and $\alpha \beta$ is given in \textcite[12]{marcus}.
+
+With this new understanding of integrality in $\C$, we propose the following natural definition for a number field's canonical ``ring of integers''.
 
 \begin{definition}[Number Ring]
-	The \emph{number ring} of a number field $K = \Q(\alpha)$ is the set of algebraic integers contained within $K$, denoted
-	\begin{equation*}
-		\mathcal O_K = \mathbb A \cap K.
-	\end{equation*}
+    The \textbf{number ring} of a number field $K = \Q(\alpha)$ is the set of algebraic integers contained within $K$, denoted
+    \begin{equation*}
+        \mathcal O_K = \mathbb A \cap K.
+    \end{equation*}
+    We use $\mathcal O$ because it looks like a ring.
 \end{definition}
 
-We use $\mathcal O$ because it looks like a ring.
+Sometimes, calculating the number ring for a number field is a simple as moving $\alpha$ from next to the $\Q$ to next to the $\Z$. For example, our friend $\Z[i \sqrt 5]$ is the number ring of the imaginary quadratic field $\Q(i \sqrt{5})$. This happens to also be true for all cyclotomic fields:
+\begin{equation}
+    \mathcal O_{\Q(\zeta_k)} = \Z[\zeta_k].
+\end{equation}
+Proving this fact is not trivial \cite[22]{marcus}.
 
-% TODO: give examples
+Unfortunately, it's not always this simple. In fact, we've already seen evidence of a more complicated example when we noted above that $\frac12 + \frac12 \sqrt 5 \in \Q(\sqrt 5)$ is an integer. But it's not in $\Z[\sqrt 5]$. In general, the number ring of a quadratic field $\Q(\sqrt m)$ is
+\begin{equation}
+    \mathcal O_{\Q(\sqrt m)} = \begin{cases}
+        \Z[1, \frac12 + \frac12 \sqrt d \, ] & \text{if $d \equiv 1 \mod 4$} \\
+        \Z[1, \sqrt d \, ]                   & \text{otherwise}.
+    \end{cases}
+\end{equation}
 
-Sometimes you can just move $\alpha$ from next to the $\Q$ to next to the $\Z$.
-
-% - cyclotomic field
-% - quadratic field
-% - sqrt 5 (two dimensional integral basis, show why we can't just to $\Z[\sqrt 5]$
-% - when is this the case?
+Thankfully, things are never too bad: we are always guaranteed an integral basis for $\mathcal O_K$, meaning that the ring of integers for any number field $K$ can be written as
+\begin{equation}
+    \mathcal O_K = \spn_\Z \{ b_1, \ldots, b_n \}
+\end{equation}
+for some $b_1, \ldots, b_n \in \mathcal O_K$. Another way of saying this is that $\mathcal O_K$ is always a free Abelian group of rank $n$ \cite[20]{marcus}.
 
 \subsection{Dedekind Domains}
 
 Number rings have some nice properties, so mathematicians have done what they love best and given those properties a definition.
 
-\begin{definition}[Noetherian domain]
-
-\end{definition}
-
 \begin{definition}[Dedekind domain]
-	A \emph{Dedekind domain} is a ring $R$ such that
-	\begin{enumerate}
-		\item $R$ is integrally closed,
-		\item $R$ is Noetherian, and
-		\item every nonzero prime ideal is maximal.
-	\end{enumerate}
+    \label{def:dedekin-domain}
+    A \textbf{Dedekind domain} is a ring $R$ such that
+    \begin{enumerate}
+        \item $R$ is integrally closed (\autoref{def:integrally-closed}),
+        \item $R$ is Noetherian (\autoref{def:noetherian}), and
+        \item every nonzero prime ideal is maximal.
+    \end{enumerate}
 \end{definition}
 
-\begin{theorem}[Number Rings are Dedekind Domains]
+On its own, this definition is uninspiring, but over the next several pages it will allow us to establish the following: Even though elements of number rings don't factor uniquely, the \emph{ideals} of number rings do decompose uniquely into primes. But before we do anything too impressive, we show that number rings satisfy this definition.
 
+\begin{theorem}
+    Number Rings are Dedekind domains.
 \end{theorem}
 
 \begin{proof}
+    We will show part (i) of \autoref{def:dedekin-domain}. Sketches of proofs for (ii) and (iii) are available in \cite[40]{marcus}.
 
+    Let $K = \Q[\alpha]$ be a number field. We wish to show that $\mathcal O_K$ is integrally closed, i.e., that if $\alpha \in K$ is the root of some monic $f \in \mathcal O_K[x]$, then $\alpha \in \mathcal O_K$.
+
+    To start, let $f(x) = x^n + \alpha_{n-1}x^{n-1} + \cdots + \alpha_0$ and note that because $\alpha_i$ is an algebraic integer, it's the root of some monic $f_i \in \Z[x]$ of degree $d_i$. Using this fact, we are able to write $\alpha_i^{d_i}$ as an integral linear combination of lower-order powers of $\alpha_i$:
+    \begin{equation}
+        \alpha_i^{d_i} = c_0 + c_1 \alpha_i + \ldots + c_{d_i-1} \alpha_i^{d_i-1},
+        \quad c_i \in \Z.
+    \end{equation}
+    By repeating this rewriting process, we can express \emph{any} power of $\alpha_i$ as an integral linear combination of $1, \alpha_i, \alpha_i^2, \ldots, \alpha_i^{d_i - 1}$.
+
+    We now show that $R = \Z[\alpha_0, \ldots, \alpha_{n-1}, \alpha]$ has a finite integral basis. We know that elements of $R$ are linear combinations of terms of the form
+    \begin{equation}
+        x = \alpha_0^{b_0} \cdots \alpha_{n-1}^{b_{n-1}} \, \alpha^{b_n}
+    \end{equation}
+    where $b_i \in \Z$.
+    First, we rewrite $\alpha^{b_n}$ in terms of $\alpha, \ldots, \alpha_{n-1}$ and then use the result from the previous paragraph to rewrite high powers of $\alpha_0, \ldots, \alpha_{n-1}$.
+    We are left with only low power terms---specifically an integral linear combination of elements in the set
+    \begin{equation}
+        B = \left\{
+        \alpha_0^{k_0} \cdots \alpha_{n-1}^{k_{n-1}} \, \alpha^k
+        : 0 \leq k_i < d_i, 0 \leq k < n
+        \right\}
+    \end{equation}
+    So $B$ additively generates $R$. The generating set $B$ set has size $d_0 \cdots d_{n-1} \cdot n$, which is finite. Because $\alpha \in R$ and $R$ is finitely additively generated, it follows that $\alpha \in A$ by \cite[Theorem 2.2]{marcus}. We conclude that $\alpha \in \mathbb A \cap K = \mathcal O_K$, and therefore that $\mathcal O_K$ is integrally closed.
+\end{proof}
+
+Our ultimate goal for this section is to show that ideals in Dedekind domains factor uniquely into primes, but to get there, we need a much better sense for how the ideals themselves behave.
+The following theorems begin to build that understanding. For the sake of brevity, we defer proof of \autoref{thm:ideal-inverses-exist} to \textcite[40]{marcus} (the proof is long and not illuminating). However, we will use the result to prove two desirable properties of Dedekind ideals that we make use of in the remainder of the section.
+
+\begin{theorem}[Inverses exist]
+    \label{thm:ideal-inverses-exist}
+    For any nonzero ideal $I \subseteq R$, there exists some ideal $J \subseteq R$ such that $IJ$ is principal.
+\end{theorem}
+
+\begin{corollary}[Cancellation law]
+    \label{thm:ideal-cancellation-law}
+    If $A$, $B$, and $C$ are ideals in a Dedekind domain with $AB = AC$, then $B = C$.
+\end{corollary}
+
+\begin{proof}
+    Take $J \subset R$ such that $JA$ is principal, i.e., $JA = (\alpha)$ for some $\alpha \in R$. Then
+    \begin{equation}
+        \alpha B
+        = (\alpha) B
+        = JAB
+        = JAC
+        = (\alpha) B
+        = \alpha C,
+    \end{equation}
+    so $B = C$.
+\end{proof}
+
+\begin{corollary}[Ideal divisibility]
+    \label{thm:ideal-divisibility}
+    If $A$ and $B$ are ideals of a Dedekind domain, then $A \mid B$ iff $A \supset B$.
+\end{corollary}
+
+\begin{proof}
+    The forward direction is easy: If $A \mid B$, there must exist some nontrivial ideal $I$ such that $AI = B$, from which $B \subset A$ follows immediately.
+
+    To prove the reverse direction, assume $B \subset A$ and choose $J$ such that $AJ = (\alpha)$ is principal. Define $C = \frac 1 \alpha JB$ and observe that
+    \begin{equation}
+        C
+        = \frac 1 \alpha
+        = \frac 1 \alpha J B
+        \subset \frac 1 \alpha J A
+        = \frac 1 \alpha (\alpha)
+        \subseteq R.
+    \end{equation}
+    Additionally, for any $x \in R$ and $c \in C$, we have
+    \begin{equation}
+        xr
+        = x (\frac 1 \alpha j b)
+        = \frac 1 \alpha (x j) b
+        \in \frac 1 \alpha J B
+    \end{equation}
+    by the fact that $J$ is an ideal and $xj \in J$. So $C$ is an ideal and
+    \begin{equation}
+        AC
+        = \frac 1 \alpha A J B
+        = \frac 1 \alpha (\alpha) B
+        = R B
+        = B.
+    \end{equation}
+    by the fact that $RB = B$ for any ideal $B$.
+\end{proof}
+
+With these in hand, we move to the main result of this section.
+
+\begin{theorem}
+    \label{thm:dedekind-ideal-factorization}
+    Ideals in Dedekind domains uniquely factor into prime ideals.
+\end{theorem}
+
+\begin{proof}
+    Let $R$ be a Dedekind domain. We show that every ideal is representable as a product of primes. \textcite[42]{marcus} provides a proof that this representation is unique up to ordering.
+
+    Let $A$ be all those ideals that are not representable as a product of primes and assume towards contradiction that $A$ is non-empty.
+    Because $R$ is Noetherian $A$ must contain some maximal ideal $M$. Note that $M \neq (R)$ by the convention that $(R)$ ``factors'' as the empty product, so $(R) \not \in A$.
+
+    By \cite[] Theorem 15, Lemma 2], we have that $M \subset P$ for some prime ideal $P$. So there must exist an ideal $I$ such that $M = PI$. This implies that $M \subseteq I$, and in fact, the containment must be strict: If $I = M$, then $RM = PM$ so $R = P$ by the cancellation law (\autoref{thm:ideal-cancellation-law}). Therefore, $M \subset I$, so $I \not \in A$ by the choice that $M$ is maximal. This means that $I$ factors uniquely as a product of primes, so $M$ must also factor uniquely. This is a contradiction.
+\end{proof}
+
+Although we won't prove it, the converse of \autoref{thm:dedekind-ideal-factorization} is also true. In fact, prime factorization of ideals is sometimes taken as an alternative definition of Dedekind domains.
+
+This theorem allows us to still have some notion of unique factorization even in number rings that aren't UFDs. For example, in the now-familiar $\Z[i \sqrt 5]$, we observed earlier that $6$ fails to uniquely factor because
+\begin{equation}
+    \begin{aligned}
+        6 & = 2 \cdot 3                        \\
+          & = (1 + i \sqrt 5) (1 - i \sqrt 5).
+    \end{aligned}
+\end{equation}
+Thanks to \autoref{thm:dedekind-ideal-factorization}, we now have some consolation: the ideal generated by $6$ does uniquely factor into primes as
+\begin{equation}
+    (6)             & = (2, 1 + i \sqrt5) \, (2, 1 - i \sqrt5)
+    \, (3, 1 + i \sqrt5) \,(3, 1 - i \sqrt5).
+\end{equation}
+
+Notice that all four prime divisors of $6$ (the ring element) appear in the prime factorization of $(6)$ (the ring ideal). This is not a coincidence. In fact, we can recover the prime factors of the \emph{element} $6$ by taking the pairwise products of the prime factors of the \emph{ideal} $(6)$:
+\begin{equation}
+    \label{eqn:recovering-factors-of-6}
+    \begin{aligned}
+        (3)             & = (3, 1 + i \sqrt5) \,(3, 1 - i \sqrt5)  \\
+        (2)             & = (2, 1 + i \sqrt5) \, (2, 1 - i \sqrt5) \\
+        (1 + i \sqrt 5) & = (2, 1 + i \sqrt5) \,(3, 1 + i \sqrt5)  \\
+        (1 - i \sqrt 5) & = (2, 1 - i \sqrt5) (3, 1 - i \sqrt5)
+    \end{aligned}
+\end{equation}
+It appears that in a hand-wavey, very non-technical way, the unique factorization of the ideal $(6)$ completely captures the \emph{failure} of unique factorization of the ring element $6$. We'll pursue this idea further in the next section.
+
+For now, we conclude by noting that this recovery of prime factors is only possible because the prime ideals of $(6)$ are not principally generated. The following theorem formalizes that intuition.
+
+\begin{theorem}
+    \label{thm:dedekind-ufd-implies-pid}
+    Let $R$ be a Dedekind domain. Then $R$ is a unique factorization domain if and only if it's a principal ideal domain.
+\end{theorem}
+
+First, a lemma.
+
+\begin{lemma}
+    \label{lem:prime-elements-generate-prime-ideals}
+    Let $p \in R$ be prime. Then $(p) \subseteq R$ is prime.
+\end{lemma}
+
+\begin{proof}
+    Let $ab \in (p)$, i.e., $p \mid ab$ because $(p) = pR$ is principal. By Euclid's Lemma, $p \mid a$ or $p \mid b$, meaning either $a$ or $b$ is in $(p)$.
+\end{proof}
+
+We now proceed to the proof of \autoref{thm:dedekind-ufd-implies-pid}.
+
+\begin{proof}
+    The converse (PID implies UFD) is a well known result outside the context of Dedekind domains. See e.g. \textcite{dummit-foote}.
+
+    To prove the forward direction, let $I$ be an ideal of $R$; we show that $I$ is principal.
+
+    By \autoref{thm:ideal-inverses-exist}, $IJ = (\alpha)$ for some principal ideal $(\alpha)$ and some (not necessarily principal) ideal $J$. Because $R$ is a UFD, we have that $\alpha = p_1 \cdots p_k$ for some primes $p_i \in R$, so
+    \begin{equation}
+        (\alpha) = (p_1 \cdots p_k) = (p_1) \cdots (p_k)
+    \end{equation}
+    where each $(p_k)$ is a prime ideal by \autoref{lem:prime-elements-generate-prime-ideals}.
+
+    Because $R$ is a Dedekind domain, this factorization is unique, and because $IJ =  (\alpha)$, it must be that $I$ is the product of some subset of these $(p_i)$.
+    Let $A \subseteq \{ p_i \}$ be the primes that generate those ideals. It follows that
+    \begin{equation}
+        I
+        = \prod_{p_i \in A} (p_i)
+        = \left( \prod_{p_i \in A} p_i \right).
+    \end{equation}
+    So $I$ is principal.
 \end{proof}
 
 \begin{figure}
-	\centering
-	% TODO: fix node positioning
-	\begin{tikzpicture}
-		\graph[
-		layered layout, rotate=90,
-		sibling distance=8em, level distance=5em,
-		edges = { arrow },
-		nodes = { box },
-		]{
-		"Integrally Closed \\ Domains"
-		-> {UFDs, "Dedekind \\ Domains"}
-		-> PIDs;
+    \centering
+    \begin{tikzpicture}
+        \graph[
+        layered layout,
+        sibling distance=8em, level distance=5em,
+        edges = { arrow },
+        nodes = { box },
+        ]{
+        "Integrally Closed \\ Domains"
+        -> {UFDs, "Dedekind \\ Domains"}
+        -> PIDs;
 
-		"Noetherian \\ Domains" -> "Dedekind \\ Domains";
+        "Noetherian \\ Domains" -> "Dedekind \\ Domains";
 
-		};
-	\end{tikzpicture}
-	\caption{The two paths for an integrally closed domain with upward ambitions.}
+        };
+    \end{tikzpicture}
+    \caption{The two paths for an integrally closed domain with upward ambitions.}
+    \label{fig:dedekind-in-ring-hierarchy}
 \end{figure}
 
-This definition is pretty unhelpful. The reason we care about Dedekind domains at all is the following.
+One interpretation of \autoref{thm:dedekind-ufd-implies-pid} is that there are two choices for an integrally closed domain that wants to move up in the world: It can either take the traditional path and have unique factorization of its elements, or it can take the non-traditional path and have unique factorization of its ideals. But you can't do both without becoming a PID. This is illustrated in \autoref{fig:dedekind-in-ring-hierarchy}.
 
-\begin{theorem}
-	\label{thm:dedekind-ideal-factorization}
-	Ideals in Dedekind domains uniquely factor into prime ideals.
-\end{theorem}
+We've seen examples of rings that fail to have unique factorization and compensate by taking the Dedekind domain path. Are there rings that take the other path, i.e., rings that are not Dedekind but do admit unique factorization? The answer is yes. For example, the ring $\Q[x, y]$ is not Dedekind because the ideal $(x)$ is prime but not maximal: $(x) \subset (x, y)$. The infinite polynomial ring $\Q[x_1, x_2, \ldots]$ is not Dedekind because the ascending chain of ideals
+\begin{equation}
+    (x_1) \subset (x_1, x_2) \subset \cdots
+\end{equation}
+never stabilizes, so the ring isn't Noetherian. Yet both of these examples are UFDs.
 
-Although we won't prove it, the converse of \autoref{thm:dedekind-ideal-factorization} is also true, and is sometimes taken as an alternative definition of Dedekind domains.
-% TODO: provide a citation for this
-
-We use the one that we've chosen to use because its conditions are easier to show.
-
-% TODO: why do we care?
-% - replaces unique factorization of elements with unique factorization of rings
-
-\begin{theorem}
-	\label{thm:dedekind-ufd-implies-pid}
-	If a ring is a Dedekind domain and a unique factorization domain, then it's a principal ideal domain.
-\end{theorem}
-
-Once you have prime factorization of both ring elements and ideals, you are guaranteed that all ideals are principal. Before we prove this theorem, we're going to work through an example.
-
-% TODO: give example of factoring 6 in $\Z[i \sqrt 5]$
-
-The unique factorization of the ideal $(6)$ completely captures the \emph{failure} of unique factorization of the ring element $6$. But this only happens because the prime ideals that $6$ factors into are generated by two elements.
-
-\begin{proof}[Proof (of \autoref{thm:dedekind-ufd-implies-pid})
-	% TODO: write proof
-\end{proof}
-
-% TODO: prove or mention that every ideal in a DD is generated by at most two elements?
-
-% TODO: give examples of UFDs that aren't DDs
+% FIX: come up with example of ideal that doesn't factor uniquely?
+%  - can sage do this?
 

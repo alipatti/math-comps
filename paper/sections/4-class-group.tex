@@ -1,38 +1,149 @@
 \section{The Ideal Class Group}
 
+We noticed in the previous section that the unique prime factorization of ideals revealed information about the \emph{failure} of unique factorization of ring elements. This section gives a little more formality to that idea. We begin with the following construction:
+
 \begin{definition}[Ideal Class Group]
-	Let $K = \Q[\alpha]$ be a number field. The \textit{class group} of $K$ is the set of ideals of $\mathcal O_K$, modulo the equivilence relation
-	\begin{equation*}
-		I \sim J \text{ iff } \alpha I = \beta J \text{ for some nonzero } \alpha, \beta \in R.
-	\end{equation*}
+    \label{def:ideal-class-group}
+    Let $K = \Q[\alpha]$ be a number field. The \textit{class group} of $K$ is the set of ideals of $\mathcal O_K$, modulo the equivalence relation
+    \begin{equation}
+        I \sim J \text{ iff } \alpha I = \beta J \text{ for some nonzero } \alpha, \beta \in R.
+    \end{equation}
 \end{definition}
 
-This is the smallest relation that "kills the principal ideals", i.e., collapses them into a single equivilence class.
-You can also define the ideal class group as the quotent of fractional ideals by principal ideals.
+This happens to be the smallest equivalence relation that ``kills'' the principal ideals, i.e., collapses them into a single equivalence class.
+This follows from the fact that one can analogously define the ideal class group as the quotient of fractional ideals by principal ideals.
 
-\begin{theorem}
-	The ideal class group is a group.
-\end{theorem}
+Returning to our old friend $\Z[i \sqrt 5]$, one can verify that $(2) \sim (3)$ by the fact that $3 (2) = (6) = 2 (3)$.
+In fact, for any number field $K$, any two principal ideals $(a), (b) \subseteq \mathcal O_K$ are equivalent by the fact that $a (b) = (ab) = b (a)$.
+This equivalence class of principal ideals plays the role of the identity element in the class group which is---as the name suggests---a group. The group operation given by ideal multiplication of some representative element from each ideal class. We leave it to the reader to verify that this operation is well-defined. Inverses are guaranteed to exist by \autoref{thm:ideal-inverses-exist} which guarantees that for any ideal $I$, there exists some $J$ such that $IJ$ is principal.
 
-\begin{proof}
-	\begin{lemma}[Ideal inverses exist]
-		% TODO: copy proof from marcus
-	\end{lemma}
+What about the non-principal ideals of $\Z[i \sqrt 5]$? We saw that the ideal $(6)$ factored into four prime ideals; under $\sim$, they're all equivalent:
+\begin{equation}
+    \begin{aligned}
+        (6, 3 + 3 i \sqrt 5)
+         & = 3 \, (2, 1 + i \sqrt 5)                \\
+         & = 3 \, (2, 1 - i \sqrt 5)                \\
+         & = (1 - i \sqrt 5) \, (3, 1 + i \sqrt 5)  \\
+         & = (1 + i \sqrt 5) \, (3, 1 - i \sqrt 5).
+    \end{aligned}
+\end{equation}
+(In the last two lines, the left-hand terms of the multiplication are elements of $\Z[i \sqrt 5]$, not ideals.)
 
-	Have to show that there is an identity, inverses exists, and that ideal multiplication is well-defined.
-\end{proof}
+It turns out that these are the only two equivalence classes, so we say that the class group of $\Q[i \sqrt 5]$ is (isomorphic to) the cyclic group $\mathcal C_2$.
+The principal ideals play the role of the identity element $1$; the non-principal ideals play the role of $-1$.
+We saw evidence of this earlier in \autoref{eqn:recovering-factors-of-6} when we were able to multiply the prime factors of $(6)$ to recover the irreducible factors of $6$.
+We didn't know it at the time, but what we really were observing is that $(-1)^2 = 1$.
 
 \subsection{The Class Number}
 
-With so much machinery now built up, stating the goal of our paper is quite simple:
-
 \begin{definition}[Class Number]
-	The class number of a number field $K = \Q[\alpha]$ is the size of its ideal class group.
+    The class number of a number field $K = \Q(\alpha)$, denoted $h(K)$, is the size of its ideal class group.
 \end{definition}
 
+Before we do anything too complicated, note that this new definition allows us to rephrase \autoref{thm:dedekind-ufd-implies-pid}:
+
 \begin{theorem}
-	Class numbers are always finite.
+    The number ring $\mathcal O_K$ has unique factorization if and only if $h(K) = 1$.
 \end{theorem}
 
-Never infinitely far from your dreams.
+\begin{proof}
+    The class number $h(K) = 1$ iff all ideals in $\mathcal O_K$ are principal, i.e., iff $\mathcal O_K$ is a PID. Number rings are Dedekind domains, so the result follows from \autoref{thm:dedekind-ufd-implies-pid}.
+\end{proof}
+
+We now proceed to the main goal of our paper. With so much machinery now built up, stating the theorem is quite simple:
+
+\begin{theorem}
+    \label{thm:clas-number-finite}
+    Class numbers are always finite.
+\end{theorem}
+
+\begin{proof}
+    We prove \autoref{thm:clas-number-finite} through a sequence of lemmas.
+
+    \begin{lemma}
+        Let $K$ be a number field and $\mathcal O_K = \A \cap K$ its field of integers. Then, there exists some $\lambda > 0$ such that every non-trivial ideal of $R$ contains a nonzero $\alpha$ such that
+        \begin{equation}
+            \label{eqn:ideal-norm-bound}
+            \left| \Norm^K(\alpha) \right| \leq \lambda || I ||.
+        \end{equation}
+    \end{lemma}
+
+    Take $\alpha_1, \ldots, \alpha_n$ to be an integral basis for $\mathcal O_K = \spn_\Z\{\alpha_1, \ldots, \alpha_n\}$ and let $\sigma_1, \ldots, \sigma_n$ be the embeddings of $K$ in $\C$. We claim that \autoref{eqn:ideal-norm-bound} holds for
+    \begin{equation}
+        \lambda = \prod_{i \leq n} \sum_{j \leq n} | \sigma_i(\alpha_j)|.
+    \end{equation}
+    To find $\alpha$, fix some ideal $I \subseteq R$, take $m$ to be the largest integer such that $m^n \leq ||I|| < (m+1)^n$ and consider the following set:
+    \begin{equation}
+        M = \left\{ \sum_{j \leq n} m_j \alpha_j : m_j = 0, 1, \ldots, m \right\}.
+    \end{equation}
+    To generate an element of $M$, one must make $n$ choices for $m_j$, each of which has $m+1$ options (the integers $0, \ldots, m$. So $|M| = (m+1)^n > ||I||$, and the pigeonhole principle guarantees that two elements of $M$ must be congruent modulo $I$---call them $a$ and $b$. We take
+    \begin{equation}
+        \label{eqn:class-group-proof-alpha}
+        \alpha = b - a = \sum_{j \leq n} m_j \alpha_j
+    \end{equation}
+    for some integer $m_j$ with $m_j \leq m$. It follows that
+    \begin{equation}
+        \begin{aligned}
+            \left| \Norm^K(\alpha) \right|
+             & = \prod_{i \leq n} |\sigma_i(\alpha)|                           \\
+             & \leq \prod_{i \leq n} \sum_{j \leq n} m_j | \sigma_i(\alpha_j)| \\
+             & \leq \lambda m^n                                                \\
+             & \leq \lambda || I ||.
+        \end{aligned}
+    \end{equation}
+
+    \medskip
+
+    \begin{lemma}
+        Every equivalence class of $\mathcal O_R$ contains an ideal $J$ with $||J|| \leq \lambda$.
+    \end{lemma}
+
+    Let $C$ be an equivalence class of $O_R$ with respect to $\sim$ (from \autoref{def:ideal-class-group}). Take some $I \in \C \inv$ and define $\alpha$ as in \autoref{eqn:class-group-proof-alpha}. By construction, $\alpha \in I$, so $(\alpha) \subseteq I$ and therefore there must exist some ideal $J$ such that $IJ = (\alpha)$ by \autoref{thm:ideal-divisibility}. Because $IJ$ is principal and $I \in C \inv$, it must be that $J \in C$. Finally,
+    \begin{equation}
+        \lambda ||I||
+        \geq |N^K(\alpha)|
+        = ||(\alpha)||
+        = ||I|| \, ||J||
+    \end{equation}
+    where the last two equalities follow from \cite[Theorem 22]{marcus}. So $||J|| \leq \lambda$.
+
+    \medskip
+
+    \begin{lemma}
+        There are only finitely many ideals satisfying $||J|| \leq \lambda$.
+    \end{lemma}
+
+    Let $P_i$ be the prime divisors of $J$ with corresponding multiplicities $b_i$.
+    Then,
+    \begin{equation}
+        \lambda
+        \geq ||J||
+        = ||\prod P_i^{n_i}||
+        = \prod ||P_i||^{n_i}.
+    \end{equation}
+    There are only finitely many primes $P_i$ and multiplicities $b_i$ satisfying this inequality, so there are only finitely many possible $J$.
+    % FIX: why is this true?
+
+    \medskip
+
+    Each ideal class must contain some ideal satisfying $||J|| \leq \lambda$, of which there are only finitely many. \autoref{thm:clas-number-finite} follows.
+\end{proof}
+
+We won't give any rigorous meaning to this claim, but it seems that the class number of a number field $K$ captures ``how far away'' a group is from achieving unique factorization.
+In the previous section, we saw that the class number of $\Q[i \sqrt5]$ was $2$, so in some sense it couldn't be any closer to being a UFD.
+
+There's an encouraging undertone here: If every number ring yearns for unique factorization, it's never infinitely far from its dreams.
+
+% % FIX: is this worth discussing?
+%
+% \subsection{The Unit Theorem}
+%
+% \begin{theorem}[Unit theorem]
+% \end{theorem}
+%
+% Proving this theorem is outside the scope of this paper---the proof alone in \textcite[100-103]{marcus} spills onto four pages and relies on tens of pages material that we haven't developed here.
+%
+% Even without proof, this theorem provides some explanation for why the class number of real quadratic fields is much harder to describe than that of imaginary quadratic fields. \ldots
+%
+% % explain why this makes real quadratic fields more complicated than imaginary ones?
 

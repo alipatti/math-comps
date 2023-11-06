@@ -1,0 +1,8 @@
+# configuration for https://github.com/cmhughes/latexindent.pl
+
+defaultIndent: "    "
+
+# modifyLineBreaks:
+#   oneSentencePerLine:
+#     manipulateSentences: 1
+
