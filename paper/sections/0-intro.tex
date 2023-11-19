@@ -5,7 +5,7 @@ Imagine that you want to find all integer solutions of the equation
     \label{eqn:simple-diophantine}
     x y - x + 3 \, y - z - 3 = 0.
 \end{equation}
-This is an example of a Diophantine equation, and a classic way to solve them is via factoring. By rewriting \autoref{eqn:simple-diophantine} as
+This is known as a Diophantine equation, and a classic way to solve them is via factoring. By rewriting \autoref{eqn:simple-diophantine} as
 \begin{equation}
     \begin{aligned}
         z & = x y - x + 3 \, y - 3                 \\
@@ -68,7 +68,7 @@ and enumerating all factors of $z = ab$, one can recover $x = a - 3$ and $y = b 
 
 \subsection{Primitive Pythagorean Triples}
 
-This technique is great when it applies, but it often doesn't work for more complicated Diophantine equation. For example, imagine we want to find all primitive Pythagorean triples, i.e., solutions to
+This technique is great when it applies, but for more complicated Diophantine equations, it usually doesn't work. For example, imagine we want to find all primitive Pythagorean triples, i.e., solutions to
 \begin{equation}
     \label{eqn:x2-y2-z2}
     z^2 = x^2 + y^2
@@ -82,7 +82,7 @@ An unintuitive but fruitful idea is to take a leap of faith and reframe this que
             & = \underbrace{(x + iy)}_\alpha \underbrace{(x - iy)}_\beta \qquad \in \Z[i][x],
     \end{aligned}
 \end{equation}
-and one can show that $\alpha, \beta \in \Z[i]$ are relatively prime because $x, y \in \Z$ are relatively prime by assumption. Because $\Z[i]$ has unique factorization, $\alpha$ must be a square, i.e., $\alpha = u \gamma^2$ where $\gamma \in \Z[i]$ and $u \in \Z[i] \units = \{ \pm 1, \pm i \}$. (This is analogous to how in the traditional integers, $rs = n^2$ with $(r, s) = 1$ implies that $r = \pm k^2$ for some $k$. In $\Z[i]$, the units $\{ \pm 1, \pm i \}$ take the place of the optional minus sign in front of $k$.)
+and one can show that these $\alpha, \beta \in \Z[i]$ share no prime factors in $\Z[i]$ because $x, y \in \Z$ share no prime factors in $\Z$ by assumption (where we extend the notion of primality via \autoref{def:prime-element}---more on this later). Because elements in $\Z[i]$ factor uniquely into primes, $\alpha$ must be a square, i.e., $\alpha = u \gamma^2$ where $\gamma \in \Z[i]$ and $u \in \Z[i] \units = \{ \pm 1, \pm i \}$. (This is analogous to how in the traditional integers, $rs = n^2$ with $(r, s) = 1$ implies that $r = \pm k^2$ for some $k$. In $\Z[i]$, the units $\{ \pm 1, \pm i \}$ take the place of the optional minus sign in front of $k$.)
 
 For the sake of brevity, we ignore the pesky units and consider only the case where $u = 1$, i.e.,
 \begin{equation}
@@ -103,7 +103,7 @@ and a bit of algebra gets us
 \begin{equation}
     z =  a^2 + b^2.
 \end{equation}
-Whenever $a$ and $b$ are relatively prime, the generated triple will be primitive. We enumerate the first few positive solutions (given by $a > b > 0$) in \autoref{tab:pythagorean-triples}.
+Whenever $a$ and $b$ are relatively prime and are not both odd, the generated triple will be primitive. We enumerate the first few positive solutions (given by $a > b > 0$) in \autoref{tab:pythagorean-triples}.
 
 \begin{table}
     \centering
@@ -126,7 +126,7 @@ Whenever $a$ and $b$ are relatively prime, the generated triple will be primitiv
 
 \subsection{Overview}
 
-This is admittedly a toy example, but it illustrates an important point. We started with a problem strictly in the integers, and only by reframing it as a problem about a larger ring $\Z[i] \subset \C$ were we able to solve it. This is the essence of algebraic number theory: using tools from algebra like rings and field extensions to deepen our understanding about the integers and the primes.
+This is admittedly a toy example with many details swept under the rug, but it illustrates an important point. We started with a problem strictly in the integers, but were only able to solve it by considering a larger ring $\Z[i] \subset \C$. This is the essence of algebraic number theory: using tools from algebra like rings and field extensions to deepen our understanding about the integers and the primes.
 
 While this is a nice, romantic vision of the field, it would be nice to have something more concrete. Thankfully, Daniel Marcus provides a much more pragmatic definition in the very first sentence of his book \cite[1]{marcus}:
 \begin{quote}
@@ -136,7 +136,7 @@ While this is a nice, romantic vision of the field, it would be nice to have som
 The goal of this paper is in its title: to provide an introduction to algebraic number theory. We'll start with a crash course in algebra, including some things omitted or very briefly covered in Carleton's intro algebra class. Then, we'll talk about algebraic number fields (the things Marcus speaks so highly of) and their corresponding integer rings before defining and unpacking the class group and the class number. To close, we'll talk a bit about the current state of the field and place this paper's results into the larger context of math. Unique factorization (and its failure) will provide a thread through the whole piece.
 
 My hope is that anyone who has taken Math 342 at Carleton or the equivalent could conceivably pick up this paper and read it from top to bottom with no consultation of outside material.
-That's not to say that it'll be a light read--at times we'll move very quickly and leave gaps in the exposition for the sake of brevity. To quote Richard Feynman \cite[148]{feynmans-lost-lecture}:
+That's not to say that it'll be a light read---at times we'll move very quickly and leave gaps in the exposition for the sake of brevity. To quote Richard Feynman \cite[148]{feynmans-lost-lecture}:
 
 \begin{quote}
     ``I am going to give what I will call an elementary demonstration. But elementary does not mean easy to understand. Elementary means that very little is required to know ahead of time in order to understand it, except to have an infinite amount of intelligence.''

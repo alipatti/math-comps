@@ -1,6 +1,9 @@
 \section{Number Rings}
+\label{sec:number-rings}
 
-In the previous section, we extend the notion of rational number into the complex plane. Now, we develop a complex analogue to the integers.
+In the previous section, we extended the notion of rational numbers into $\C$.
+But the complex numbers are a big, scary place, and these new fields are feeling a little lonely without their life-long best friend: the integers.
+Thankfully, we have a solution.
 
 \begin{definition}[Algebraic Integer]
     An \textbf{algebraic integer} is a complex number $\alpha$ that is the root of some monic polynomial $f \in \Z[x]$. We use $\mathbb A$ to denote the set of all algebraic integers.
@@ -11,10 +14,10 @@ In the previous section, we extend the notion of rational number into the comple
     \end{equation}
 \end{definition}
 
-As one would hope, our familiar integers $\Z$ remain integers under this more general definition: $a \in \Z$ is the root of $f_a(x) = x - a \in \Z[x]$. But $\mathbb A$ also contains more complicated elements that don't at all obey our intuition of integrality:
+As one would hope, our familiar integers $\Z$ remain integers under this more general definition: $a \in \Z$ is the root of $f_a(x) = x - a \in \Z[x]$. But $\mathbb A$ also contains more complicated elements that don't obey our intuition of integrality at all:
 \begin{itemize}
-    \item $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 + 5$.
-    \item $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$.
+    \item $i \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 + 5$;
+    \item $2 + \sqrt[3]{17} \in \mathbb A$ because of $f(x) = x^3 - 6 x^2 + 12 x - 25$;
     \item $\frac12 + \frac12 \sqrt 5 \in \mathbb A$ because of $f(x) = x^2 - x - 1$.
 \end{itemize}
 Not all algebraic numbers are algebraic integers, but non-integral elements tend to look a little bit more complicated. For example, $- \frac 3 4 + \frac i 4 \sqrt 7 \not \in \mathbb A$ because its minimal polynomial $x^2 + \frac32x + 1$ has a non-integer coefficient.
@@ -24,14 +27,14 @@ It turns out (although we won't prove it) that $\mathbb A$ is a subring of $\C$,
 With this new understanding of integrality in $\C$, we propose the following natural definition for a number field's canonical ``ring of integers''.
 
 \begin{definition}[Number Ring]
-    The \textbf{number ring} of a number field $K = \Q(\alpha)$ is the set of algebraic integers contained within $K$, denoted
+    The \textbf{number ring} or \textbf{ring of integers} for an algebraic number field $K = \Q(\alpha)$ is the set of algebraic integers contained within $K$, denoted
     \begin{equation*}
         \mathcal O_K = \mathbb A \cap K.
     \end{equation*}
     We use $\mathcal O$ because it looks like a ring.
 \end{definition}
 
-Sometimes, calculating the number ring for a number field is a simple as moving $\alpha$ from next to the $\Q$ to next to the $\Z$. For example, our friend $\Z[i \sqrt 5]$ is the number ring of the imaginary quadratic field $\Q(i \sqrt{5})$. This happens to also be true for all cyclotomic fields:
+Sometimes, calculating the number ring for a number field is a simple as moving $\alpha$ from next to the $\Q$ to next to the $\Z$. For example, our friend $\Z[i \sqrt 5]$ is the number ring of the imaginary quadratic field $\Q(i \sqrt{5})$. This happens to also be true for cyclotomic fields:
 \begin{equation}
     \mathcal O_{\Q(\zeta_k)} = \Z[\zeta_k].
 \end{equation}
@@ -49,7 +52,7 @@ Thankfully, things are never too bad: we are always guaranteed an integral basis
 \begin{equation}
     \mathcal O_K = \spn_\Z \{ b_1, \ldots, b_n \}
 \end{equation}
-for some $b_1, \ldots, b_n \in \mathcal O_K$. Another way of saying this is that $\mathcal O_K$ is always a free Abelian group of rank $n$ \cite[20]{marcus}.
+for some $b_1, \ldots, b_n \in \mathcal O_K$ where $n$ is the degree of the number field $K$. Another way of saying this is that $\mathcal O_K$ is always a free Abelian group of rank $n$, i.e., it's isomorphic to $\Z^n$ \cite[20]{marcus}.
 
 \subsection{Dedekind Domains}
 
@@ -65,7 +68,7 @@ Number rings have some nice properties, so mathematicians have done what they lo
     \end{enumerate}
 \end{definition}
 
-On its own, this definition is uninspiring, but over the next several pages it will allow us to establish the following: Even though elements of number rings don't factor uniquely, the \emph{ideals} of number rings do decompose uniquely into primes. But before we do anything too impressive, we show that number rings satisfy this definition.
+On its own, this definition is uninspiring, but over the next several pages it will allow us to establish the following: Even though elements of number rings don't factor uniquely, the \emph{ideals} of number rings do decompose uniquely into primes. But before we get ahead of ourselves, we show that number rings satisfy this definition.
 
 \begin{theorem}
     Number Rings are Dedekind domains.
@@ -83,7 +86,7 @@ On its own, this definition is uninspiring, but over the next several pages it w
     \end{equation}
     By repeating this rewriting process, we can express \emph{any} power of $\alpha_i$ as an integral linear combination of $1, \alpha_i, \alpha_i^2, \ldots, \alpha_i^{d_i - 1}$.
 
-    We now show that $R = \Z[\alpha_0, \ldots, \alpha_{n-1}, \alpha]$ has a finite integral basis. We know that elements of $R$ are linear combinations of terms of the form
+    We now show that $R = \Z[\alpha_0, \ldots, \alpha_{n-1}, \alpha]$ is a finitely generated $\Z$-module. We know that elements of $R$ are linear combinations of terms of the form
     \begin{equation}
         x = \alpha_0^{b_0} \cdots \alpha_{n-1}^{b_{n-1}} \, \alpha^{b_n}
     \end{equation}
@@ -102,7 +105,7 @@ On its own, this definition is uninspiring, but over the next several pages it w
 Our ultimate goal for this section is to show that ideals in Dedekind domains factor uniquely into primes, but to get there, we need a much better sense for how the ideals themselves behave.
 The following theorems begin to build that understanding. For the sake of brevity, we defer proof of \autoref{thm:ideal-inverses-exist} to \textcite[40]{marcus} (the proof is long and not illuminating). However, we will use the result to prove two desirable properties of Dedekind ideals that we make use of in the remainder of the section.
 
-\begin{theorem}[Inverses exist]
+\begin{theorem}[Ideal inverses exist]
     \label{thm:ideal-inverses-exist}
     For any nonzero ideal $I \subseteq R$, there exists some ideal $J \subseteq R$ such that $IJ$ is principal.
 \end{theorem}
@@ -210,19 +213,6 @@ For now, we conclude by noting that this recovery of prime factors is only possi
     Let $R$ be a Dedekind domain. Then $R$ is a unique factorization domain if and only if it's a principal ideal domain.
 \end{theorem}
 
-First, a lemma.
-
-\begin{lemma}
-    \label{lem:prime-elements-generate-prime-ideals}
-    Let $p \in R$ be prime. Then $(p) \subseteq R$ is prime.
-\end{lemma}
-
-\begin{proof}
-    Let $ab \in (p)$, i.e., $p \mid ab$ because $(p) = pR$ is principal. By Euclid's Lemma, $p \mid a$ or $p \mid b$, meaning either $a$ or $b$ is in $(p)$.
-\end{proof}
-
-We now proceed to the proof of \autoref{thm:dedekind-ufd-implies-pid}.
-
 \begin{proof}
     The converse (PID implies UFD) is a well known result outside the context of Dedekind domains. See e.g. \textcite{dummit-foote}.
 
@@ -272,7 +262,4 @@ We've seen examples of rings that fail to have unique factorization and compensa
     (x_1) \subset (x_1, x_2) \subset \cdots
 \end{equation}
 never stabilizes, so the ring isn't Noetherian. Yet both of these examples are UFDs.
-
-% FIX: come up with example of ideal that doesn't factor uniquely?
-%  - can sage do this?
 

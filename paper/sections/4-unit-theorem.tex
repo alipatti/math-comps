@@ -1,0 +1,50 @@
+\subsection{The Unit Theorem}
+
+\begin{theorem}[Unit theorem]
+    Let $K = \Q(\alpha)$ be a number field. Let $f$ be the minimal polynomial of $\alpha$ and take $r$ and $2s$ to be the number of real and complex roots of $f$. (Note that $r + 2s = n$.) Then, the units of $\mathcal O_K$ are
+    \begin{equation}
+        U = (\mathcal O_K) \units = V \times W
+    \end{equation}
+    where
+    \begin{equation}
+        W = \mathbb T \cap \mathcal O_K
+    \end{equation}
+    is the finite cyclic group consisting of the roots of unity contained in $\mathcal O_K$ and
+    \begin{equation}
+        V = \{ u_1^{k_1} \cdots u_{r + s - 1}^{k_{r + s - 1}} : k_i \in \Z \}
+    \end{equation}
+    for some set $\{ u_i \} \subset \mathcal O_K$ dubbed the \textbf{fundamental units}.
+    It follows that $V$ is isomorphic to $\Z^{r + s - 1}$---a free Abelian group of rank $r + s - 1$.
+\end{theorem}
+
+Proving this theorem is well outside the scope of this paper---in \textcite{marcus}, the proof alone spills onto four pages. We'll focus here on unpacking what this implies about the quadratic case.
+
+For imaginary quadratic fields $\Q(\sqrt{-m})$, there are no real embeddings and two complex embeddings given by the identity and conjugation maps. So $r + s - 1 = 0$ and the only units are $\pm 1$, the same as the integers.
+
+For real quadratic fields $\Q(\sqrt{m})$, there are no complex embeddings and two real embeddings given by sending $a + b \sqrt{m}$ to $a \pm b \sqrt{m}$. So $r + s - 1 = 1$ and the group of units is
+\begin{equation}
+    U = \{ \pm u^k : k \in \Z \}
+\end{equation}
+for some fundamental unit $u$. Values of $u$ for the first few real quadratic fields are given in \autoref{tab:fundamental-units}.
+
+\begin{table}
+    \begin{tabular}{c | c}
+        $m$  & $u$                                    \\
+        \hline
+        $2$  & $\sqrt{2} + 1$                         \\
+        $3$  & $-\sqrt{3} + 2$                        \\
+        $5$  & $\frac{1}{2} \sqrt{5} - \frac{1}{2}$   \\
+        $6$  & $2 \sqrt{6} + 5$                       \\
+        $7$  & $-3 \sqrt{7} + 8$                      \\
+        $10$ & $-\sqrt{10} + 3$                       \\
+        $11$ & $-3 \sqrt{11} - 10$                    \\
+        $13$ & $-\frac{1}{2} \sqrt{13} + \frac{3}{2}$ \\
+        $14$ & $-4 \sqrt{14} + 15$                    \\
+        $15$ & $-\sqrt{15} - 4$                       \\
+        $17$ & $-\sqrt{17} + 4$                       \\
+        $19$ & $39 \sqrt{19} + 170$
+    \end{tabular}
+    \caption{The fundamental units for the first few real quadratic fields (calculated with \texttt{sage}).}
+    \label{tab:fundamental-units}
+\end{table}
+

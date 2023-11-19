@@ -13,7 +13,6 @@
 \usepackage[linkcolor=black, colorlinks]{hyperref}
 \addbibresource{references.bib}
 
-
 % float positioning
 \usepackage{floatrow}
 \floatplacement{figure}{t}
@@ -21,6 +20,16 @@
 
 % spacing
 \usepackage{parskip}
+\usepackage[margins=1in]{geometry}
+
+% headers
+\usepackage{fancyhdr}
+\lhead{\scshape Algebraic Number Theory}
+\rhead{\scshape Pattison \thepage}
+\cfoot{} % get rid of the page number 
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\makeatother
 
 % table formatting
 \usepackage{array}
@@ -51,32 +60,32 @@
 
 \begin{document}
 
-\thispagestyle{empty}
-
 \maketitle
 
-% \begin{abstract}
-%     This paper is a whirlwind introduction to the field of algebraic number	theory with the goal of stating and unpacking two important theorems: Dirichlet's unit Theorem and the fact that the class number is finite.
-%     Along the way, we'll cover things like the number fields, algebraic integers, cyclotomic fields, Dedekind domains, and generalizations of primes.
-% \end{abstract}
+\begin{abstract}
+    This paper is a whirlwind introduction to the field of algebraic number theory culminating in discussion of Dirichlet's unit theorem and the class number.
+\end{abstract}
 
 \bigskip
 
 \tableofcontents
 
+\thispagestyle{empty}
+
 \newpage
 
-\pagestyle{plain}
+\pagestyle{fancy}
 \setcounter{page}{1}
 
 \input{sections/0-intro.tex}
 \input{sections/1-preliminaries.tex}
 \input{sections/2-number-fields.tex}
 \input{sections/3-number-rings.tex}
-\input{sections/4-class-group.tex}
-\input{sections/5-conclusion.tex}
+\input{sections/4-unit-theorem.tex}
+\input{sections/5-class-group.tex}
+\input{sections/6-conclusion.tex}
 
-\pagebreak
+\clearpage
 
 \printbibliography
 

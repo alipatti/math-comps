@@ -1,8 +1,6 @@
 \section{Conclusion}
 
-To conclude, we briefly describe the behavior of the class number in the special cases of quadratic and cyclotomic fields.
-
-\begin{figure}
+\begin{figure}[t]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -21,12 +19,14 @@ To conclude, we briefly describe the behavior of the class number in the special
     \label{fig:imaginary-quadratic-class-number}
 \end{figure}
 
+To conclude, we briefly describe the behavior of the class number in the special cases of quadratic and cyclotomic fields.
+
 In the imaginary quadratic case, it was recently proven that there are only 9 values for $m$ for which $\Q[\sqrt{-m}]$ is a UFD, i.e., has class number 1.
 They are
 \begin{equation}
     m = 1, 2, 3, 7, 11, 19, 43, 67, 163
 \end{equation}
-and together known as the Heegner numbers \cite[A000924]{oeis} after Kurt Heegner who proved\footnote{with minor flaws} in 1952 that this list was complete. In the long term, the class numbers for imaginary quadratic fields tend towards infinity as is shown in \autoref{fig:imaginary-quadratic-class-number}.
+and are collectively known as the Heegner numbers \cite[A000924]{oeis} after Kurt Heegner who proved (up to minor flaws) in 1952 that this list was complete. In the long term, the class numbers for imaginary quadratic fields tend towards infinity as is shown in \autoref{fig:imaginary-quadratic-class-number}.
 
 One might reasonably hope that the purely-real quadratic case is simpler: it's not. We know comparatively very little about $\Q(\sqrt m)$ when $m > 0$. It's conjectured that there are infinitely many $m$ such that $\Q(\sqrt m)$ is a UFD, but the problem is open.
 The first few $m$ that produce quadratic fields with unique factorization are
@@ -55,7 +55,7 @@ For cyclotomic fields, things are quite strange: the class number of $\Q[\zeta_k
 $$
     49238446584179914120276706365116286443831
 $$
-But for the preceding field ($k = 210$), the class number is a measly $13$. In the long term, $h$ becomes arbitrarily large: \autoref{fig:cyclotomic-class-number}.
+But for the preceding field ($k = 210$), the class number is a measly $13$. In the long term, $h$ becomes arbitrarily large (\autoref{fig:cyclotomic-class-number})
 
 \begin{figure}[h]
     \begin{tikzpicture}

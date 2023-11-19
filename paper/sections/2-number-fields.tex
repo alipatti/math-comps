@@ -6,7 +6,7 @@ We begin by defining the object of interest:
     A \textbf{number field} $K \subset \C$ is a finite extension of $\Q$.
 \end{definition}
 
-For those comfortable with fields (e.g. through a course on Galois Theory), this definition seems completely natural. But it's often helpful to instead think about number fields $\Q(\alpha)$ as finite-degree vector spaces over $\Q$. For example, the number field introduced at the end of the previous section can be rewritten as
+For those comfortable with fields (e.g. through a course on Galois Theory), this definition seems completely natural. But it's often helpful to instead think about number fields as finite-degree vector spaces over $\Q$. For example, the number field introduced at the end of the previous section can be rewritten as
 \begin{equation}
     \Q(i \sqrt 5) = \spn_\Q \{ 1, \ i \sqrt 5 \},
 \end{equation}
@@ -20,7 +20,7 @@ We claim (without proof) that we can do the same thing for any number field.
         = \Q[\alpha]
         = \spn_\Q \{ 1, \ \alpha, \ \alpha^2, \ \ldots, \ \alpha^{n-1} \}
     \end{equation*}
-    where $\alpha \in \C$ is the root of some degree-$n$ polynomial in $\Q[x]$. We call $n$ the \textbf{degree} of $K$.
+    where $\alpha \in \C$ is the root of some degree-$n$ irreducible polynomial in $\Q[x]$. We call $n$ the \textbf{degree} of $K$.
 \end{theorem}
 
 Numbers $\alpha \in \C$ that are roots of polynomials over $\Q$ are so special that mathematicians came up with a name for them:
@@ -30,10 +30,9 @@ Numbers $\alpha \in \C$ that are roots of polynomials over $\Q$ are so special t
 \end{definition}
 
 If $\alpha$ and $\beta$ are algebraic numbers with the same minimal polynomial, we say that they are \emph{conjugate}---for example $i$ and $-i$ are both roots of the polynomial $x^2 + 1$. In general, if $\alpha \in \C$ has degree $\deg \alpha = n$, then $\alpha$ has $n - 1$ conjugates by the fact that $\C$ is algebraically closed.
-
 Most numbers we're familiar with are algebraic, for example any combination of radicals and rational numbers. Some famous non-examples are transcendental numbers like $\pi$ and $e$.
 
-Although any algebraic number $\alpha$ produces a valid number field $\Q(\alpha)$, for the purposes of this paper we'll focus on two ``classic'' examples: cyclotomic and quadratic fields.
+Although any algebraic number $\alpha$ produces a valid number field $\Q(\alpha)$, for the purposes of this paper we'll focus on two ``classic'' cases: cyclotomic and quadratic fields.
 
 \begin{definition}[Cyclotomic field]
     The $k$th \textbf{cyclotomic field} is the number field $\Q(\zeta_k)$ where $\zeta_k = e^{2 \pi i / k}$ is a $k$th root of unity.
@@ -45,15 +44,11 @@ Although any algebraic number $\alpha$ produces a valid number field $\Q(\alpha)
 
 In quadratic fields, we typically assume that $m$ is squarefree. If not, $m = nk^2$ for some $n, k \in \Z$ and
 \begin{equation}
-    \Q(\sqrt m) = \Q(k \sqrt n) = \Q(n).
+    \Q(\sqrt m) = \Q(k \sqrt n) = \Q(\sqrt{n}).
 \end{equation}
 One might expect that $m > 0$ produces be the simpler case, but it turns out that the opposite is true: we know very little about real quadratic fields (more on this later).
 
-% FIX: transition?
-
 \subsection{Complex Embeddings}
-
-% FIX: motivate embeddings?
 
 \begin{definition}[Embedding]
     Let $K$ be a number field. An \textbf{embedding} of $K$ in $\C$ is a ring homomorphism $\sigma : K \hookrightarrow \C$.
@@ -65,7 +60,7 @@ Algebraic number fields $K = \Q(\alpha)$ are subsets of $\C$, so there is a triv
 \begin{equation}
     a + b \sqrt{m} \; \mapsto \; a - b \sqrt{m}
 \end{equation}
-is an embedding (exercise: verify this) because $a - b \sqrt{m}$ and $a + \sqrt{m}$ are conjugate, i.e., roots of the same minimal polynomial in $\Q[x]$. In general for an algebraic number field $K = \Q(\alpha)$, there are $n = \deg \alpha$ embeddings: one trivial identity map and $n-1$ others given by sending $\alpha$ to any of its conjugates.
+is an embedding (exercise: verify this) because $a - b \sqrt{m}$ and $a + \sqrt{m}$ are conjugate, i.e., roots of the same minimal polynomial in $\Q[x]$. In general for an algebraic number field $K = \Q(\alpha)$, there are $n = \deg \alpha$ embeddings: one trivial identity map and $n-1$ others given by sending $\alpha$ to any of its $n - 1$ conjugates.
 
 For cyclotomic fields, this amounts to sending $\zeta_k$ to any of the other $k$th primitive roots of unity, of which there are $\phi(k)$. \autoref{fig:fifth-roots-permutation} shows the possible destinations of $\zeta$ for $k = 5$.
 

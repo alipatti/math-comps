@@ -1,6 +1,6 @@
 \section{The Ideal Class Group}
 
-We noticed in the previous section that the unique prime factorization of ideals revealed information about the \emph{failure} of unique factorization of ring elements. This section gives a little more formality to that idea. We begin with the following construction:
+We noticed in \autoref{sec:number-rings} that the unique prime factorization of ideals revealed information about the \emph{failure} of unique factorization of ring elements. This section gives a little more formality to that idea. We begin with the following construction:
 
 \begin{definition}[Ideal Class Group]
     \label{def:ideal-class-group}
@@ -15,9 +15,9 @@ This follows from the fact that one can analogously define the ideal class group
 
 Returning to our old friend $\Z[i \sqrt 5]$, one can verify that $(2) \sim (3)$ by the fact that $3 (2) = (6) = 2 (3)$.
 In fact, for any number field $K$, any two principal ideals $(a), (b) \subseteq \mathcal O_K$ are equivalent by the fact that $a (b) = (ab) = b (a)$.
-This equivalence class of principal ideals plays the role of the identity element in the class group which is---as the name suggests---a group. The group operation given by ideal multiplication of some representative element from each ideal class. We leave it to the reader to verify that this operation is well-defined. Inverses are guaranteed to exist by \autoref{thm:ideal-inverses-exist} which guarantees that for any ideal $I$, there exists some $J$ such that $IJ$ is principal.
+This equivalence class of principal ideals plays the role of the identity element in the class group which is---as the name suggests---a group. The group operation is given by multiplication of representatives from each ideal class; we leave it to the reader to verify that this is well-defined. Inverses exist by \autoref{thm:ideal-inverses-exist} and closure follows from the fact that the product of two ideals is also an ideal.
 
-What about the non-principal ideals of $\Z[i \sqrt 5]$? We saw that the ideal $(6)$ factored into four prime ideals; under $\sim$, they're all equivalent:
+What about non-principal ideals? In $\Z[i \sqrt 5]$, we saw that the ideal $(6)$ factored into four prime ideals; under $\sim$, they're all equivalent:
 \begin{equation}
     \begin{aligned}
         (6, 3 + 3 i \sqrt 5)
@@ -30,7 +30,7 @@ What about the non-principal ideals of $\Z[i \sqrt 5]$? We saw that the ideal $(
 (In the last two lines, the left-hand terms of the multiplication are elements of $\Z[i \sqrt 5]$, not ideals.)
 
 It turns out that these are the only two equivalence classes, so we say that the class group of $\Q[i \sqrt 5]$ is (isomorphic to) the cyclic group $\mathcal C_2$.
-The principal ideals play the role of the identity element $1$; the non-principal ideals play the role of $-1$.
+The principal ideals play the role of the $1$; the non-principal ideals play the role of $-1$.
 We saw evidence of this earlier in \autoref{eqn:recovering-factors-of-6} when we were able to multiply the prime factors of $(6)$ to recover the irreducible factors of $6$.
 We didn't know it at the time, but what we really were observing is that $(-1)^2 = 1$.
 
@@ -95,10 +95,10 @@ We now proceed to the main goal of our paper. With so much machinery now built u
     \medskip
 
     \begin{lemma}
-        Every equivalence class of $\mathcal O_R$ contains an ideal $J$ with $||J|| \leq \lambda$.
+        Every equivalence class of $\mathcal O_K$ contains an ideal $J$ with $||J|| \leq \lambda$.
     \end{lemma}
 
-    Let $C$ be an equivalence class of $O_R$ with respect to $\sim$ (from \autoref{def:ideal-class-group}). Take some $I \in \C \inv$ and define $\alpha$ as in \autoref{eqn:class-group-proof-alpha}. By construction, $\alpha \in I$, so $(\alpha) \subseteq I$ and therefore there must exist some ideal $J$ such that $IJ = (\alpha)$ by \autoref{thm:ideal-divisibility}. Because $IJ$ is principal and $I \in C \inv$, it must be that $J \in C$. Finally,
+    Let $C$ be an element of the ideal class group, i.e., an equivalence class of $\mathcal O_K$ with respect to the relation from \autoref{def:ideal-class-group}. Take some $I \in C \inv$ and define $\alpha$ as in \autoref{eqn:class-group-proof-alpha}. By construction, $\alpha \in I$, so $(\alpha) \subseteq I$ and therefore there must exist some ideal $J$ such that $IJ = (\alpha)$ by \autoref{thm:ideal-divisibility}. Because $IJ$ is principal and $I \in C \inv$, it must be that $J \in C$. Finally,
     \begin{equation}
         \lambda ||I||
         \geq |N^K(\alpha)|
@@ -110,19 +110,26 @@ We now proceed to the main goal of our paper. With so much machinery now built u
     \medskip
 
     \begin{lemma}
-        There are only finitely many ideals satisfying $||J|| \leq \lambda$.
+        There are only finitely many prime ideals $P \subseteq \mathcal O_K$ satisfying $||P|| = n$ for any $n$.
+    \end{lemma}
+
+    For any prime ideal, $||P|| = p^k$ for some prime integer $p$ and positive integer $k$. This follows from the fact that $F = \mathcal O_K / P$ must be a (finite) field because $P$ is maximal, so $|F|$ must be a prime power. So for any $n \neq p^k$, the claim vacuously holds, and we consider only the case where $n$ is a prime power.
+
+    Let $P$ be an ideal of $\mathcal O_K$ with $||P|| = p^k$. By Theorem 20 of \textcite[45]{marcus}, there is a unique prime integer $p'$ such that $P \supset (p')$. Moreover, $p = p'$ because $P$ divides $(p')$, implying $||P||$ divides $(p') = {p'}^n$ where $n$ is the degree of $K$ \cite[Theorem 22]{marcus}. This only works if $p = p'$, meaning $P$ is a prime factor of the $\mathcal O_K$ ideal $(p)$. Because $\mathcal O_K$ is a Dedekind domain, there can only be finitely many such $P$.
+
+    \begin{lemma}
+        There are only finitely many ideals $J \subseteq \mathcal O_K$ satisfying $||J|| \leq \lambda$.
     \end{lemma}
 
     Let $P_i$ be the prime divisors of $J$ with corresponding multiplicities $b_i$.
-    Then,
+    Then, by Theorem 22 of \textcite{marcus},
     \begin{equation}
         \lambda
         \geq ||J||
         = ||\prod P_i^{n_i}||
         = \prod ||P_i||^{n_i}.
     \end{equation}
-    There are only finitely many primes $P_i$ and multiplicities $b_i$ satisfying this inequality, so there are only finitely many possible $J$.
-    % FIX: why is this true?
+    By the previous lemma, there are only finitely many primes $P_i$ and multiplicities $b_i$ satisfying this inequality, so there are only finitely many possible $J$.
 
     \medskip
 
@@ -130,20 +137,5 @@ We now proceed to the main goal of our paper. With so much machinery now built u
 \end{proof}
 
 We won't give any rigorous meaning to this claim, but it seems that the class number of a number field $K$ captures ``how far away'' a group is from achieving unique factorization.
-In the previous section, we saw that the class number of $\Q[i \sqrt5]$ was $2$, so in some sense it couldn't be any closer to being a UFD.
-
-There's an encouraging undertone here: If every number ring yearns for unique factorization, it's never infinitely far from its dreams.
-
-% % FIX: is this worth discussing?
-%
-% \subsection{The Unit Theorem}
-%
-% \begin{theorem}[Unit theorem]
-% \end{theorem}
-%
-% Proving this theorem is outside the scope of this paper---the proof alone in \textcite[100-103]{marcus} spills onto four pages and relies on tens of pages material that we haven't developed here.
-%
-% Even without proof, this theorem provides some explanation for why the class number of real quadratic fields is much harder to describe than that of imaginary quadratic fields. \ldots
-%
-% % explain why this makes real quadratic fields more complicated than imaginary ones?
+In the previous section, we saw that the class number of $\Q[i \sqrt5]$ was $2$, so in some sense it couldn't be any closer to being a UFD. There's an encouraging undertone here: If every number ring yearns for unique factorization, it's never infinitely far from its dreams.
 
